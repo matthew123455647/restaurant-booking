@@ -1,16 +1,13 @@
-const { Comment } = require("../models/Comment");
-
-// Function to get all comments
-async function getAllComments() {
-  try {
-    const comments = await Comment.find(); // Use your database query to get all comments
-    return comments;
-  } catch (error) {
-    console.error("Error while retrieving comments:", error);
-    throw error;
-  }
+const { readJSON, writeJSON } = require('./UserUtil')
+const { Comment } = require('../models/Comment');
+async function viewComment(req, res) {
+    try {
+        const allComments = await readJSON('utils/comment.json');
+        return res.status(201).json(allComments);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 }
-
 module.exports = {
-  getAllComments,
+    viewComment
 };

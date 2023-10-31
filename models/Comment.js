@@ -13,8 +13,6 @@ class Comment{
         this.review = review;
         this.dateOfVisit = dateOfVisit;
         this.timestamp = timestamp;
-
-
     }
 }
 
