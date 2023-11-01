@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.static("./public"));
 
 const { viewComment } = require("./utils/CommentUtil")
-app.get("/commment", viewComment);
+app.get("/comment", viewComment);
 
 const { register } = require("./utils/UserUtil");
 app.post("/register", register);
