@@ -1,0 +1,12 @@
+[
+    {
+        "restaurantName": "McDonalds",
+        "description": "McDonald's Corporation is an American multinational fast food chain, founded in 1940 ",
+        "operatingHours": "Everyday 24hrs",
+        "rating": "4",
+        "image": "https://media-cdn.tripadvisor.com/media/photo-s/17/a6/02/61/caption.jpg",
+        "location": "Pasir Ris",
+        "contactNo": "+65 63853180",
+        "review": "The food is good"
+    }
+]
