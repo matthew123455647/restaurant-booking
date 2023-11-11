@@ -16,6 +16,9 @@ const { login } = require("./utils/LoginUtil");
 app.post("/register", register);
 app.post("/login", login);
 
+const { addBooking} = require('./utils/BookingUtil')
+app.post('/add-booking', addBooking);
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
