@@ -37,7 +37,7 @@ async function addComment(req, res) {
         const updatedComment = await writeJSON(newComment, 'utils/comment.json');
 
         if (!updatedComment) {
-            return res.status(500).json({ message: 'Failed to update comments.' });
+            return res.status(500).json({ message: 'Failed to add comments.' });
         }
 
         return res.status(201).json(updatedComment);
