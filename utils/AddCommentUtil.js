@@ -17,11 +17,24 @@ async function addComment(req, res) {
         const rating = req.body.rating;
         const review = req.body.review;
 
+        // Additional Validation: Review Length
+
+        if (!isNaN(restaurantName) && Number.isInteger(Number(restaurantName))) {
+            return res.status(400).json({ message: 'Invalid restaurantName. It should not be an integer.' });
+        }
+        
+        const minReviewLength = 3;
+        if (review.length < minReviewLength) {
+            return res.status(400).json({ message: 'Review must be at least 3 characters long.' });
+        }
+
         // Limiting Comment Length
         const maxReviewLength = 500;
         if (review.length > maxReviewLength) {
             return res.status(400).json({ message: 'Review exceeds the maximum allowed length.' });
         }
+
+
 
         const dateOfVisit = req.body.dateOfVisit;
         const timestamp = req.body.timestamp;
