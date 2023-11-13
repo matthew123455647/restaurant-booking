@@ -16,6 +16,15 @@ const { login } = require("./utils/LoginUtil");
 app.post("/register", register);
 app.post("/login", login);
 
+const { viewBooking } = require('./utils/ViewBookingUtil')
+app.get('/view-booking', viewBooking);
+
+const { addBooking} = require('./utils/AddBookingUtil')
+app.post('/add-booking', addBooking);
+
+const { deleteBooking } = require('./utils/DeleteBookingUtil')
+app.delete('/delete-booking/:id', deleteBooking);
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
