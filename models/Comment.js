@@ -5,14 +5,13 @@ class Comment{
         rating,
         review,
         dateOfVisit,
-        timestamp
     ) {
         this.username = username;
         this.restaurantName = restaurantName;
         this.rating = rating;
         this.review = review;
         this.dateOfVisit = dateOfVisit;
-        this.timestamp = timestamp;
+        this.timestamp = new Date();
     }
 }
 
