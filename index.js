@@ -20,6 +20,9 @@ app.get("/restaurant/:name", viewRestaurantByName);
 app.post("/register", register);
 app.post("/login", login);
 
+const { viewBooking } = require('./utils/ViewBookingUtil')
+app.get('/view-booking', viewBooking);
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
