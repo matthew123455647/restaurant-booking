@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "This is a project for DVOPs",
   "main": "index.js",
+  
   "scripts": {
     "test": "mocha tests/*.test.js"
-  },
+    },
+
   "author": "",
   "license": "ISC",
   "dependencies": {
