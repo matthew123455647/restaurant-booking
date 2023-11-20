@@ -9,21 +9,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
+const { viewComment } = require("./utils/CommentUtil");
 const { addComment } = require("./utils/AddCommentUtil");
-const { viewComment } = require("./utils/CommentUtil")
-const { viewRestaurant, viewRestaurantByName  } = require('./utils/RestaurantUtil')
+const { viewRestaurant, viewRestaurantByName  } = require('./utils/RestaurantUtil');
 const { register } = require("./utils/UserUtil");
 const { login } = require("./utils/LoginUtil");
+const { viewBooking } = require('./utils/ViewBookingUtil');
+const { addBooking} = require('./utils/AddBookingUtil');
 
-app.post("/comment" , addComment);
+//Comment GET, PUSH
 app.get("/comment", viewComment);
+app.post("/comment" , addComment);
+//Restaurant GET, PUSH
 app.get('/restaurant', viewRestaurant);
 app.get("/restaurant/:name", viewRestaurantByName);
+//Register PUSH
 app.post("/register", register);
+//Login PUSH
 app.post("/login", login);
-
-const { viewBooking } = require('./utils/ViewBookingUtil')
+//Booking Resturant GET,PUSH,DELETE
 app.get('/view-booking', viewBooking);
+app.post('/add-booking', addBooking);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
