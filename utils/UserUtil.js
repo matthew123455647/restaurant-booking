@@ -83,7 +83,7 @@ async function register(req, res) {
     // Check if the birthday is a valid date
     const birthDate = new Date(birthday);
     const currentDate = new Date();
-    const age = currentDate.getFullYear() - birthDate.getFullYear();
+    const age = calculateAge(birthday);
 
     if (!email.includes("@") || !email.includes(".") || password.length < 6) {
       return res
@@ -104,6 +104,8 @@ async function register(req, res) {
         message:
           "Validation error: You must be at least 18 years old to register",
       });
+
+      //REMINDER DO THE INVALID DATE :D
     } else if (!/^\d{8}$/.test(phone_number)) {
       return res.status(500).json({
         message: "Validation error: Phone number must be exactly 8 digits long",

@@ -1,12 +1,1 @@
-[
-    {
-        "email": "example@email.com",
-        "password": "StrongPassword123?",
-        "birthday": "1000-01-01",
-        "first_name": "John",
-        "last_name": "Doe",
-        "phone_number": "12345678",
-        "profile_picture": "https://example.com/profile-picture.jpg",
-        "username": "johndoe"
-    }
-]
+[]
