@@ -5,6 +5,7 @@ class Comment{
         rating,
         review,
         dateOfVisit,
+        timestamp
     ) {
         this.username = username;
         this.restaurantName = restaurantName;
@@ -12,6 +13,7 @@ class Comment{
         this.review = review;
         this.dateOfVisit = dateOfVisit;
         this.timestamp = new Date();
+        this.timestamp = timestamp;
     }
 }
 

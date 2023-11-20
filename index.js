@@ -10,10 +10,17 @@ app.use(bodyParser.json());
 app.use(express.static("./public"));
 
 const { addComment } = require("./utils/AddCommentUtil");
-app.post("/comment" , addComment);
-
+const { viewComment } = require("./utils/CommentUtil")
+const { viewRestaurant, viewRestaurantByName  } = require('./utils/RestaurantUtil')
 const { register } = require("./utils/UserUtil");
+const { login } = require("./utils/LoginUtil");
+
+app.post("/comment" , addComment);
+app.get("/comment", viewComment);
+app.get('/restaurant', viewRestaurant);
+app.get("/restaurant/:name", viewRestaurantByName);
 app.post("/register", register);
+app.post("/login", login);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
