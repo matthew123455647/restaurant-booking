@@ -9,10 +9,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
+const { viewComment } = require("./utils/CommentUtil")
 const { viewRestaurant, viewRestaurantByName  } = require('./utils/RestaurantUtil')
 const { register } = require("./utils/UserUtil");
 const { login } = require("./utils/LoginUtil");
 
+app.get("/comment", viewComment);
 app.get('/restaurant', viewRestaurant);
 app.get("/restaurant/:name", viewRestaurantByName);
 app.post("/register", register);
