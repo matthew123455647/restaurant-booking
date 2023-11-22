@@ -6,7 +6,7 @@ const { addComment } = require('../utils/AddCommentUtil');
 const CommentUtil = require('../utils/CommentUtil'); // Adjust the import path as needed
 
 describe('Testing resource related features', () => {
-    const commentsFilePath = 'utils/comment.json';
+    const commentsFilePath = 'utils/comments.json';
     var orgContent = "";
 
     before(async () => {
