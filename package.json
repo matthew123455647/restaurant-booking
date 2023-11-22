@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "istanbul-lib-instrument": "^6.0.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "sinon": "^17.0.1"
   }
 }
