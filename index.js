@@ -32,13 +32,6 @@ app.post("/login", login);
 app.get('/view-booking', viewBooking);
 app.post('/add-booking', addBooking);
 
-//const { viewBooking } = require('./utils/ViewBookingUtil')
-app.get('/view-booking', viewBooking);
-
-//const { addBooking} = require('./utils/AddBookingUtil')
-app.post('/add-booking', addBooking);
-
-//const { deleteBooking } = require('./utils/DeleteBookingUtil')
 app.delete('/delete-booking/:id', deleteBooking);
 
 app.get("/", (req, res) => {
