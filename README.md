@@ -1,4 +1,4 @@
-### Restaurant-Booking
+# Restaurant-Booking
 
 This is a project for DVOPs on restaurant booking
 
@@ -11,12 +11,12 @@ This is a project for DVOPs on restaurant booking
 [Usage]
 [Liscense]
 
-# Introduction
+### Introduction
 
 Welcome to our Restaurant Booking website ! This is a restaurant Booking system that allows customers to book a reservation at their chosen restaurant and comment about their experince . It is also a learning tool for us to learn about new DevOps skills and DevOps principles .
 
 
-# Features
+### Features
 
 1. **Login and Register account :**
    -Allows them to manage their own reservation details from their account and to 
@@ -28,7 +28,7 @@ Welcome to our Restaurant Booking website ! This is a restaurant Booking system 
    -Allows for users to make a booking on the restaurant that they want to go to
    -Allows for 
 
-# Git Commands
+### Git Commands
 
   **Create Branch**
   - git branch branchName
@@ -49,19 +49,19 @@ Welcome to our Restaurant Booking website ! This is a restaurant Booking system 
 - git push origin branchName
 
 
-# Installation 
+### Installation 
 
 1. Clone the repository : "https://github.com/matthew123455647/restaurant-booking.git"
 2. Express dependencies installed : "npm install fs" , "npm install body-paser", "npm install express"
 3. Create package json file : "npm init"
 
-# Usage
+### Usage
 
 1. To run the application eneter "node index.js" into the terminal
 2. Make sure it is Connected to port 5050
 3. For Unit Testing use npm test
 
-# Liscense 
+### Liscense 
 
 None
 
