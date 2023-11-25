@@ -16,6 +16,7 @@ const { register } = require("./utils/UserUtil");
 const { login } = require("./utils/LoginUtil");
 const { viewBooking } = require('./utils/ViewBookingUtil');
 const { addBooking} = require('./utils/AddBookingUtil');
+const { deleteBooking } = require('./utils/DeleteBookingUtil')
 
 //Comment GET, PUSH
 app.get("/comment", viewComment);
@@ -30,14 +31,6 @@ app.post("/login", login);
 //Booking Resturant GET,PUSH,DELETE
 app.get('/view-booking', viewBooking);
 app.post('/add-booking', addBooking);
-
-const { viewBooking } = require('./utils/ViewBookingUtil')
-app.get('/view-booking', viewBooking);
-
-const { addBooking} = require('./utils/AddBookingUtil')
-app.post('/add-booking', addBooking);
-
-const { deleteBooking } = require('./utils/DeleteBookingUtil')
 app.delete('/delete-booking/:id', deleteBooking);
 
 app.get("/", (req, res) => {
