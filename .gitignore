@@ -1,0 +1,8 @@
+# Ignore compiled files
+*.class
+
+# Ignore system-specific files
+.DS_Store
+
+# Ignore a directory named 'build'
+/build/
