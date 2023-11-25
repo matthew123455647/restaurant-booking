@@ -8,7 +8,9 @@
       "utils/LoginUtil.js",
       "utils/RestaurantUtil.js",
       "utils/AddCommentUtil.js",
-      "utils/CommentUtil.js"
+      "utils/CommentUtil.js",
+      "utils/AddBookingUtil.js",
+      "utils/ViewBookingUtil.js"
     ],
     "exclude": [],
     "reporter": [
