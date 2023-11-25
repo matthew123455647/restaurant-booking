@@ -7,7 +7,7 @@ This is a project for DVOPs on restaurant booking
 Welcome to our Restaurant Booking website ! This is a restaurant Booking system that allows customers to book a reservation at their chosen restaurant and comment about their experince . It is also a learning tool for us to learn about new DevOps skills and DevOps principles .
 
 # Features
-
+ 
 1. **Login and Register account :**
    -Allows them to manage their own reservation details from their account and to
    store their details
