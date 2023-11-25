@@ -22,7 +22,7 @@ describe("Testing booking related features", () => {
         rest: "Mac",
         contact: "88888888",
         people: "2",
-        book_date: "8/12/23",
+        book_date: "8/12/23"
       },
     };
     const res = {
@@ -57,6 +57,40 @@ describe("Testing booking related features", () => {
     };
     await addBooking(req, res);
   });
+
+
+  it('Should handle non-existent username', async () => {
+    // Mock booking data with a non-existent username
+    const bookingData = {
+      username: 'nonexistentuser',
+      rest: 'Mac',
+      contact: '88888888',
+      people: '2',
+      book_date: '8/12/23',
+    };
+
+    // Mock request object
+    const req = { body: bookingData };
+
+    // Mock response object
+    const res = {
+      status: function (code) {
+        expect(code).to.equal(404); // Expecting a not found status code
+        return this;
+      },
+      json: function (result) {
+        expect(result).to.be.an('object');
+        expect(result).to.have.property('message', 'User not found'); // Adjust based on your implementation
+        // Add more assertions based on the expected response for non-existent user
+      },
+    };
+
+    // Call the addBooking function with the mock data
+    await addBooking(req, res);
+
+    
+  });
+
   it("Should return an array when viewing booking data", async () => {
     const req = {};
     const res = {
@@ -89,10 +123,7 @@ describe("Testing booking related features", () => {
       // Handle errors (e.g., log, rethrow, etc.)
     }
   });
-   
 
-
-  
 
 });
 
