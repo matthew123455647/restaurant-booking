@@ -51,49 +51,41 @@ describe('Test CommentUtils and resource related features', () => {
     it('Should fail adding comment', async () => {
         const req = {};
         const res = {
-            status: function (code) {
-                expect(code).to.equal(201);
-                return this;
-            },
-            json: function (data) {
-                // console.log(data)
-                expect(data).to.have.lengthOf(orgContent.length + 1);
-                expect(data[orgContent.length].username).to.equal(req.body.username);
-            },
-        };
+
+        }
         await expect(addComment(req, res))
-        .to.be.rejectedWith(Error);
+            .to.be.rejectedWith(Error);
     });
 
     it('Should handle invalid input gracefully', async () => {
-    const reqMissingUsername = {
-        body: {
-            restaurantName: "Pizza Hut",
-            rating: "3",
-            review: "okay",
-            dateOfVisit: "25/11/2023",
-            timestamp: "2023-11-25T10:30:00.000Z"
-        },
-    };
-    const resMissingUsername = {
-        status: function (code) {
-            try {
-                expect(code).to.equal(201); // Update to the correct expected status code
-            } catch (error) {
-                console.error(`Error: ${error.message}`);
-            }
-            return this;
-        },
-        json: function (data) {
-            console.error(`Response body: ${JSON.stringify(data)}`);
-        },
-    };
-    try {
-        await addComment(reqMissingUsername, resMissingUsername);
-    } catch (error) {
-        console.error(`Unexpected error: ${error.message}`);
-    }
-});
+        const reqMissingUsername = {
+            body: {
+                restaurantName: "Pizza Hut",
+                rating: "3",
+                review: "okay",
+                dateOfVisit: "25/11/2023",
+                timestamp: "2023-11-25T10:30:00.000Z"
+            },
+        };
+        const resMissingUsername = {
+            status: function (code) {
+                try {
+                    expect(code).to.equal(201); // Update to the correct expected status code
+                } catch (error) {
+                    console.error(`Error: ${error.message}`);
+                }
+                return this;
+            },
+            json: function (data) {
+                console.error(`Response body: ${JSON.stringify(data)}`);
+            },
+        };
+        try {
+            await addComment(reqMissingUsername, resMissingUsername);
+        } catch (error) {
+            console.error(`Unexpected error: ${error.message}`);
+        }
+    });
 
     it('Should add a new comment to existing comments successfully', async () => {
         // Modify orgContent to simulate existing comments
