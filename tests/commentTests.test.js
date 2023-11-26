@@ -1,11 +1,14 @@
-
 const { describe, it, before, beforeEach, afterEach } = require('mocha');
-const { expect } = require('chai');
+const chai = require('chai')
+const expect = chai.expect
+chai.use(require('chai-as-promised'))
 const fs = require('fs').promises;
 const { addComment } = require('../utils/AddCommentUtil');
 const CommentUtil = require('../utils/CommentUtil'); // Adjust the import path as needed
 
-describe('Testing resource related features', () => {
+
+describe('Test CommentUtils and resource related features', () => {
+
     const commentsFilePath = 'utils/comments.json';
     var orgContent = "";
 
@@ -39,6 +42,7 @@ describe('Testing resource related features', () => {
                 return this;
             },
             json: function (data) {
+                // console.log(data)
                 expect(data).to.have.lengthOf(orgContent.length + 1);
                 expect(data[orgContent.length].username).to.equal(req.body.username);
             },
@@ -46,35 +50,44 @@ describe('Testing resource related features', () => {
         await addComment(req, res);
     });
 
+    it('Should fail adding comment', async () => {
+        const req = {};
+        const res = {
+
+        }
+        await expect(addComment(req, res))
+            .to.be.rejectedWith(Error);
+    });
+
     it('Should handle invalid input gracefully', async () => {
-    const reqMissingUsername = {
-        body: {
-            restaurantName: "Pizza Hut",
-            rating: "3",
-            review: "okay",
-            dateOfVisit: "25/11/2023",
-            timestamp: "2023-11-25T10:30:00.000Z"
-        },
-    };
-    const resMissingUsername = {
-        status: function (code) {
-            try {
-                expect(code).to.equal(201); // Update to the correct expected status code
-            } catch (error) {
-                console.error(`Error: ${error.message}`);
-            }
-            return this;
-        },
-        json: function (data) {
-            console.error(`Response body: ${JSON.stringify(data)}`);
-        },
-    };
-    try {
-        await addComment(reqMissingUsername, resMissingUsername);
-    } catch (error) {
-        console.error(`Unexpected error: ${error.message}`);
-    }
-});
+        const reqMissingUsername = {
+            body: {
+                restaurantName: "Pizza Hut",
+                rating: "3",
+                review: "okay",
+                dateOfVisit: "25/11/2023",
+                timestamp: "2023-11-25T10:30:00.000Z"
+            },
+        };
+        const resMissingUsername = {
+            status: function (code) {
+                try {
+                    expect(code).to.equal(201); // Update to the correct expected status code
+                } catch (error) {
+                    console.error(`Error: ${error.message}`);
+                }
+                return this;
+            },
+            json: function (data) {
+                console.error(`Response body: ${JSON.stringify(data)}`);
+            },
+        };
+        try {
+            await addComment(reqMissingUsername, resMissingUsername);
+        } catch (error) {
+            console.error(`Unexpected error: ${error.message}`);
+        }
+    });
 
     it('Should add a new comment to existing comments successfully', async () => {
         // Modify orgContent to simulate existing comments

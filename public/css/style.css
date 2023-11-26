@@ -254,3 +254,23 @@ body.dark .search-field i{
         overflow-y: scroll; /* Enable vertical scrolling if content overflows the container */
     }
 }
+
+/**For Booking*/
+.custom-btn {
+    background-color: #4c81af; /* Green background color */
+    color: #ffffff; /* White text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    text-align: center; /* Center text */
+    font-size: 16px; /* Set font size */
+    margin: 4px 2px; /* Add margin */
+    cursor: pointer; /* Add cursor pointer */
+    
+
+}
+
+
+
+
+
+
