@@ -10,3 +10,10 @@ secret.txt
 # Ignore all .log files except error.log
 *.log
 !error.log
+
+# Ignore a specific file
+secret.txt
+
+# Ignore all .log files except error.log
+*.log
+!error.log
