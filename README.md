@@ -2,54 +2,49 @@
 
 This is a project for DVOPs on restaurant booking
 
-## Table of Contents
-
-1.Introduction
-2.Features
-3.GitCommands
-4.Installation
-5.Usage
-6.Liscense
-
-### Introduction
+## Introduction
 
 Welcome to our Restaurant Booking website ! This is a restaurant Booking system that allows customers to book a reservation at their chosen restaurant and comment about their experince . It is also a learning tool for us to learn about new DevOps skills and DevOps principles .
-
 
 ### Features
 
 1. **Login and Register account :**
-   -Allows them to manage their own reservation details from their account and to 
-   store their details 
+   -Allows them to manage their own reservation details from their account and to
+   store their details
 2. **Comments :**
    -Allows for users to comment their own opinions on what they think about visited restaurant
    -Users are also able to edit their comments if they feel like and delete it
 3. **Make Booking :**
    -Allows for users to make a booking on the restaurant that they want to go to
-   -Allows for 
+   -Allows for
 
 ### Git Commands
 
-  **Create Branch**
-  - git branch branchName
+**Create Branch**
 
-  **Switch Branch**
-  - git switch branchName
+- git branch branchName
 
-  **Check Branch that you are on**
-  - git branch
+**Switch Branch**
 
-  **Move all files to staging (pre-commit)**
-  - git add .
+- git switch branchName
 
- **Commit files from staging**
- - git commit -m "descriptive message that explains the purpose for commit"
+**Check Branch that you are on**
 
- **Send commited files to specific branch**
+- git branch
+
+**Move all files to staging (pre-commit)**
+
+- git add .
+
+**Commit files from staging**
+
+- git commit -m "descriptive message that explains the purpose for commit"
+
+**Send commited files to specific branch**
+
 - git push origin branchName
 
-
-### Installation 
+### Installation
 
 1. Clone the repository : "https://github.com/matthew123455647/restaurant-booking.git"
 2. Express dependencies installed : "npm install fs" , "npm install body-paser", "npm install express"
@@ -61,7 +56,7 @@ Welcome to our Restaurant Booking website ! This is a restaurant Booking system 
 2. Make sure it is Connected to port 5050
 3. For Unit Testing use npm test
 
-### Liscense 
+### Liscense
 
 None
 
