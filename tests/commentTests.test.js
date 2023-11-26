@@ -1,11 +1,10 @@
-
 const { describe, it, before, beforeEach, afterEach } = require('mocha');
 const { expect } = require('chai');
 const fs = require('fs').promises;
 const { addComment } = require('../utils/AddCommentUtil');
 const CommentUtil = require('../utils/CommentUtil'); // Adjust the import path as needed
 
-describe('Testing resource related features', () => {
+describe('Test CommentUtils', () => {
     const commentsFilePath = 'utils/comments.json';
     var orgContent = "";
 
