@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const { addComment } = require('../utils/AddCommentUtil');
 const CommentUtil = require('../utils/CommentUtil'); // Adjust the import path as needed
 
-describe('Test CommentUtils', () => {
+describe('Test CommentUtils and resource related features', () => {
     const commentsFilePath = 'utils/comments.json';
     var orgContent = "";
 
