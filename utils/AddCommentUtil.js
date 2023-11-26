@@ -8,6 +8,7 @@ async function addComment(req, res) {
     const rating = req.body.rating;
     const review = req.body.review;
     const dateOfVisit = req.body.dateOfVisit;
+    if (!username || !restaurantName || !rating || !review || !dateOfVisit) throw new Error("Invalid request")
     const newReview = new Comment(
       username,
       restaurantName,

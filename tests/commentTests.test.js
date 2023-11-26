@@ -1,5 +1,7 @@
 const { describe, it, before, beforeEach, afterEach } = require('mocha');
-const { expect } = require('chai');
+const chai = require('chai')
+const expect = chai.expect
+chai.use(require('chai-as-promised'))
 const fs = require('fs').promises;
 const { addComment } = require('../utils/AddCommentUtil');
 const CommentUtil = require('../utils/CommentUtil'); // Adjust the import path as needed
@@ -44,6 +46,23 @@ describe('Test CommentUtils and resource related features', () => {
             },
         };
         await addComment(req, res);
+    });
+
+    it('Should fail adding comment', async () => {
+        const req = {};
+        const res = {
+            status: function (code) {
+                expect(code).to.equal(201);
+                return this;
+            },
+            json: function (data) {
+                // console.log(data)
+                expect(data).to.have.lengthOf(orgContent.length + 1);
+                expect(data[orgContent.length].username).to.equal(req.body.username);
+            },
+        };
+        await expect(addComment(req, res))
+        .to.be.rejectedWith(Error);
     });
 
     it('Should handle invalid input gracefully', async () => {
