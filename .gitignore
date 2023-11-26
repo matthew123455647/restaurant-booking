@@ -1,8 +1,12 @@
-# Ignore compiled files
-*.class
+# Ignore temporary files
+*.tmp
 
-# Ignore system-specific files
-.DS_Store
-
-# Ignore a directory named 'build'
+# Ignore build artifacts
 /build/
+
+# Ignore a specific file
+secret.txt
+
+# Ignore all .log files except error.log
+*.log
+!error.log
