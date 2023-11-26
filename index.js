@@ -11,7 +11,7 @@ app.use(express.static("./public"));
 
 const { viewComment } = require("./utils/CommentUtil");
 const { addComment } = require("./utils/AddCommentUtil");
-const { viewRestaurant, viewRestaurantByName  } = require('./utils/RestaurantUtil');
+const { viewRestaurantByName  } = require('./utils/RestaurantUtil');
 const { register } = require("./utils/UserUtil");
 const { login } = require("./utils/LoginUtil");
 const { viewBooking } = require('./utils/ViewBookingUtil');
@@ -22,7 +22,6 @@ const { deleteBooking } = require('./utils/DeleteBookingUtil')
 app.get("/comment", viewComment);
 app.post("/comment" , addComment);
 //Restaurant GET, PUSH
-app.get('/restaurant', viewRestaurant);
 app.get("/restaurant/:name", viewRestaurantByName);
 //Register PUSH
 app.post("/register", register);

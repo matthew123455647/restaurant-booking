@@ -5,7 +5,7 @@
   "main": "index.js",
   "nyc": {
     "include": [
-      "utils/CommentUtil.js"
+      "utils/RestaurantUtil.js"
     ],
     "exclude": [],
     "reporter": [

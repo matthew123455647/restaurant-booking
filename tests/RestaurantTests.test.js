@@ -1,43 +1,10 @@
 const { describe, it } = require('mocha');
 const { expect } = require('chai');
-const { viewRestaurant, viewRestaurantByName } = require('../utils/RestaurantUtil');
+const { viewRestaurantByName } = require('../utils/RestaurantUtil');
 
 describe('RestaurantUtil Tests', () => {
   // Test for viewRestaurant function
-  describe('viewRestaurant', () => {
-    it('should return an array of restaurants', async () => {
-      const req = {}; // Mocking the request object
-      const res = {
-        status: (code) => {
-          expect(code).to.equal(201);
-          return {
-            json: (result) => {
-              expect(result).to.be.an('array');
-              // Add more assertions based on the structure of your restaurant objects
-            },
-          };
-        },
-      };
-      await viewRestaurant(req, res);
-    });
-
-    it('should handle errors and return a 500 status code', async () => {
-      const req = {}; // Mocking the request object
-      const res = {
-        status: (code) => {
-          expect(code).to.equal(500);
-          return {
-            json: (result) => {
-              expect(result).to.be.an('object');
-              expect(result).to.have.property('message');
-              // Add more assertions based on the expected error response
-            },
-          };
-        },
-      };
-      await viewRestaurant(req, res);
-    });
-  });
+  
 
   // Test for viewRestaurantByName function
   describe('viewRestaurantByName', () => {
