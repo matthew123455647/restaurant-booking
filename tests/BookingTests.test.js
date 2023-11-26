@@ -22,7 +22,7 @@ describe("Testing booking related features", () => {
         rest: "Mac",
         contact: "88888888",
         people: "2",
-        book_date: "8/12/23"
+        book_date: "8/12/23",
       },
     };
     const res = {
@@ -37,6 +37,7 @@ describe("Testing booking related features", () => {
     };
     await addBooking(req, res);
   });
+
   it("Should not be able to add Booking due to incomplete input", async () => {
     const req = {
       body: {
@@ -58,7 +59,6 @@ describe("Testing booking related features", () => {
     await addBooking(req, res);
   });
 
-
   
 
   it("Should return an array when viewing booking data", async () => {
@@ -66,7 +66,7 @@ describe("Testing booking related features", () => {
     const res = {
       status: function (code) {
         expect(code).to.equal(201);
-        return this; 
+        return this;
       },
       json: function (data) {
         expect(Array.isArray(data)).to.be.true;
@@ -76,16 +76,15 @@ describe("Testing booking related features", () => {
   });
 
   it("Should delete a booking successfully", async () => {
-
     const req = "1700899006177848";
-  
+
     const res = {
       status: function (code) {
         expect(code).to.equal(204);
         return this;
       },
     };
-  
+
     try {
       await deleteBooking(req, res);
     } catch (error) {
@@ -93,6 +92,5 @@ describe("Testing booking related features", () => {
       // Handle errors (e.g., log, rethrow, etc.)
     }
   });
-
 
 });
