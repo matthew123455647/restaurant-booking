@@ -15,7 +15,7 @@ async function login(req, res) {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    const allUsers = await readJSON("utils/users.json");
+    const allUsers = await readJSON("./utils/users.json");
     var validCredentials = false;
     for (var i = 0; i < allUsers.length; i++) {
       var currUser = allUsers[i];
