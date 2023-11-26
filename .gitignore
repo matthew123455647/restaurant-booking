@@ -1,0 +1,25 @@
+# Ignore temporary files
+*.tmp
+
+# Ignore build artifacts
+/build/
+
+# Ignore a specific file
+secret.txt
+
+# Ignore all .log files except error.log
+*.log
+!error.log
+
+# Ignore a specific file
+secret.txt
+
+# Ignore all .log files except error.log
+*.log
+!error.log
+
+# Ignore Node.js modules
+node_modules/
+
+# Ignore coverage reports
+coverage/
