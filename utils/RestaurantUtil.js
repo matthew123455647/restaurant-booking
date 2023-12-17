@@ -3,6 +3,14 @@ const { Restaurant } = require("../models/Restaurant");
 
 
 
+async function viewRestaurant(req, res) {
+  try {
+      const allRestaurants = await readJSON("./utils/restaurants.json");
+      return res.status(201).json(allRestaurants);
+  } catch (error) {
+      return res.status(500).json({ message: error.message });
+  }
+}
 async function viewRestaurantByName(req, res) {
   try {
     const allRestaurants = await readJSON("./utils/restaurants.json");
@@ -31,5 +39,5 @@ async function viewRestaurantByName(req, res) {
   }
 }
 module.exports = {
-  viewRestaurantByName,
+  viewRestaurant, viewRestaurantByName,
 };

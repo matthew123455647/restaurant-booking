@@ -5,7 +5,7 @@ class Restaurant {
     operatingHours,
     rating,
     image,
-    location,
+    locations,
     contactNo,
     review
   ) {
@@ -14,7 +14,7 @@ class Restaurant {
     this.operatingHours = operatingHours;
     this.rating = rating;
     this.image = image;
-    this.location = location;
+    this.locations = locations;
     this.contactNo = contactNo;
     this.review = review;
   }

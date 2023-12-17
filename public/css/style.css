@@ -1,6 +1,23 @@
 
 /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+a {
+    font-size:14px;
+    font-weight:700
+  }
+  .superNav {
+    font-size:13px;
+  }
+  .form-control {
+    outline:none !important;
+    box-shadow: none !important;
+  }
+  @media screen and (max-width:540px){
+    .centerOnMobile {
+      text-align:center
+    }
+  }
 *{
     
     margin: 0;
@@ -267,6 +284,10 @@ body.dark .search-field i{
     cursor: pointer; /* Add cursor pointer */
     
 
+}
+
+h1, h2 {
+    margin-left: 20px; /* Adjust the value as needed */
 }
 
 
