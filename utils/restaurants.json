@@ -8,5 +8,16 @@
         "locations": "1 Pasir Ris Central St 3",
         "contactNo": "+65 63853180",
         "review": "The food is good"
+    },
+
+    {
+        "restaurantName": "KFC",
+        "description": "A global chicken restaurant brand with a rich, decades-long history of success and innovation",
+        "operatingHours": "Everyday 7am - 10pm",
+        "rating": "3",
+        "image": "https://lh3.googleusercontent.com/p/AF1QipO0XTx-F1x2SkeXDMFt3X_af4jYoI0QyibHa5Z5=s680-w680-h510",
+        "locations": "1 Pasir Ris Central St 3",
+        "contactNo": "+65  63120265",
+        "review": "The food not so good"
     }
 ]
