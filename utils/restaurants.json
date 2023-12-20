@@ -1,23 +1,34 @@
 [
     {
-        "restaurantName": "McDonalds",
-        "description": "McDonalds Corporation is an American multinational fast food chain, founded in 1940 ",
-        "operatingHours": " 24hrs",
+        "_id": 0,
+        "restaurantName": "PUTIEN ",
+        "description": "Opened in 2000, this was the first branch of this chain known for its exceptionally friendly service. The updated dining room boasts a light-colour scheme and modern aesthetic. The signature seaweed with mini shrimps, available November-March, uses only the first harvest of Fujian seaweed for its nutritional value. From April-August, ask about the 6-cm-long razor clams straight from the restaurant’s namesake city in Fujian. ",
+        "operatingHours": "Everyday 11.30am - 10pm",
         "rating": "4",
-        "image": "https://media-cdn.tripadvisor.com/media/photo-s/17/a6/02/61/caption.jpg",
-        "locations": "1 Pasir Ris Central St 3",
-        "contactNo": "+65 63853180",
-        "review": "The food is good"
+        "image": "https://www.putien.com/wp-content/uploads/2020/09/Sunway-Pyramid.jpg",
+        "locations": "23 Serangoon Central",
+        "contactNo": "+65  66347833"
     },
 
     {
-        "restaurantName": "KFC",
-        "description": "A global chicken restaurant brand with a rich, decades-long history of success and innovation",
-        "operatingHours": "Everyday 7am - 10pm",
+        "_id": 1,
+        "restaurantName": "Aston",
+        "description": "ASTONS Specialities is a homegrown casual steakhouse renowned for its steaks and homely western cuisine, without the hefty price tags.",
+        "operatingHours": "Everyday 11.30am - 10pm",
+        "rating": "4",
+        "image": "https://lh3.googleusercontent.com/p/AF1QipPCC7cO1tukDID8PSo6HByhQ7Yk9K3-1GEarRbj=s680-w680-h510",
+        "locations": "359 Joo Chiat Rd",
+        "contactNo": "+65 62477857"
+    },
+
+    {
+        "_id": 2,
+        "restaurantName": "The Boiler",
+        "description": "The Boiler Singapore is all about Cajun-inspired seafood that’s cooked using a wide selection of local and western herbs and spices. Specialising in the unique American dish known as seafood boil, this stylish restaurant in Esplanade aims to ignite your senses with fresh seafood and an infectious atmosphere that features excellent music and delicious drinks alongside. While seafood is the signature here, you’ll also find several non-seafood options on the menu. This means everyone is more than catered for no matter what they prefer. Popular for very good reason, The Boiler at Esplanade is not to be missed. You’ll find it along Raffles Avenue within Esplanade Mall – bookings are recommended.",
+        "operatingHours": "Everyday 11.30am - 10pm",
         "rating": "3",
-        "image": "https://lh3.googleusercontent.com/p/AF1QipO0XTx-F1x2SkeXDMFt3X_af4jYoI0QyibHa5Z5=s680-w680-h510",
-        "locations": "1 Pasir Ris Central St 3",
-        "contactNo": "+65  63120265",
-        "review": "The food not so good"
+        "image": "https://lh3.googleusercontent.com/p/AF1QipOoytrleMpM-E-b_tbH9dm67J5MUd6-txez_L6E=s680-w680-h510",
+        "locations": "8 Raffles Ave",
+        "contactNo": "+65  69093435"
     }
 ]

@@ -20,7 +20,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body onload="getRestaurantData()"> 
+<body onload="getRestaurantData(); fetchReviews()"> 
     <div class="superNav border-bottom py-2 bg-light">
         <div class="container">
             <div class="row">
@@ -53,10 +53,10 @@
                     </div>
                     <ul class="navbar-nav ms-auto ">
                         <li class="nav-item">
-                            <a class="nav-link mx-2 text-uppercase active" aria-current="page" href="#">Offers</a>
+                            <a class="nav-link mx-2 text-uppercase active" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-2 text-uppercase" href="#">Home</a>
+                            <a class="nav-link mx-2 text-uppercase" aria-current="page" href="offer.html">Offers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase" href="about.html">About</a>
@@ -133,6 +133,8 @@
     </footer>
 
     <div w3-include-html="restaurant.html"></div>
+    <div w3-include-html="review.html"></div>
+
 
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script>
@@ -140,6 +142,7 @@
         w3.includeHTML();
     </script>
     <script src="js/search.js"></script>
+    <script src="js/review.js"></script>
     <script src="js/restaurant.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/togglebutton.js"></script>
