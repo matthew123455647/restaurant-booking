@@ -1,5 +1,5 @@
 const { readJSON, writeJSON } = require("./UserUtil");
-const { Resource } = require("../models/Booking");
+const { Booking } = require("../models/Booking");
 const fs = require("fs").promises;
 
 async function deleteBooking(req, res) {
