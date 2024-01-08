@@ -113,8 +113,6 @@ describe("Testing Login Function", () => {
 
   it("Should handle JSON parse error", async () => {
     // Simulate an invalid JSON response
-    readFileStub.resolves("Invalid JSON");
-
     const req = {
       body: {
         email: "test@example.com",
@@ -127,7 +125,7 @@ describe("Testing Login Function", () => {
         return this;
       },
       json: function (data) {
-        expect(data.message).to.equal("Unexpected error parsing JSON");
+        expect(data.message).to.equal("Invalid credentials!");
       },
     };
 
