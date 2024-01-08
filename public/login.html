@@ -1,39 +1,71 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="css/styles.css">
-<!------ Include the above in your HEAD tag ---------->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/authentication.js"></script>
+  </head>
+  <body>
+    <!------ Include the above in your HEAD tag ---------->
 
-<div class="login-reg-panel">
-		<div class="login-info-box">
-			<h2>Have an account?</h2>
-			<p>Lorem ipsum dolor sit amet</p>
-			<label id="label-register" for="log-reg-show">Login</label>
-			<input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
-		</div>
-							
-		<div class="register-info-box">
-			<h2>Don't have an account?</h2>
-			<p>Lorem ipsum dolor sit amet</p>
-			<label id="label-login" for="log-login-show">Register</label>
-			<input type="radio" name="active-log-panel" id="log-login-show">
-		</div>
-							
-		<div class="white-panel">
-			<div class="login-show">
-				<h2>LOGIN</h2>
-				<input type="text" placeholder="Email">
-				<input type="password" placeholder="Password">
-				<input type="button" value="Login">
-				<a href="">Forgot password?</a>
-			</div>
-			<div class="register-show">
-				<h2>REGISTER</h2>
-				<input type="text" placeholder="Email">
-				<input type="password" placeholder="Password">
-				<input type="password" placeholder="Confirm Password">
-				<input type="button" value="Register">
-			</div>
-		</div>
-	</div>
-  <script src="js/account.js"></script>
+    <div class="login-reg-panel">
+      <div class="login-info-box">
+        <h2>Have an account?</h2>
+        <p>Lorem ipsum dolor sit amet</p>
+        <label id="label-register" for="log-reg-show">Login</label>
+        <input
+          type="radio"
+          name="active-log-panel"
+          id="log-reg-show"
+          checked="checked"
+        />
+      </div>
+
+      <div class="register-info-box">
+        <h2>Don't have an account?</h2>
+        <p>Lorem ipsum dolor sit amet</p>
+        <label id="label-login" for="log-login-show">Register</label>
+        <input type="radio" name="active-log-panel" id="log-login-show" />
+      </div>
+
+      <div class="white-panel">
+        <div class="login-show">
+          <h2>LOGIN</h2>
+          <form id="loginForm">
+            <input type="text" placeholder="Email" id="email" />
+            <input type="password" placeholder="Password" id="password" />
+            <input type="button" onclick="login()" value="Login" />
+            <a href="">Forgot password?</a>
+          </form>
+        </div>
+        <div class="register-show">
+          <h2>REGISTER</h2>
+          <form id="registerForm">
+            <input type="text" placeholder="First Name" id="first_name" />
+            <input type="text" placeholder="Last Name" id="last_name" />
+            <input type="text" placeholder="Email" id="email" />
+            <input type="password" placeholder="Password" id="password" />
+            <input type="date" placeholder="Birthday" id="birthday" />
+            <input type="text" placeholder="Phone Number" id="phone_number" />
+            <input
+              type="text"
+              placeholder="Profile Picture URL"
+              id="profile_picture"
+            />
+            <input type="text" placeholder="Username" id="username" />
+            <input type="button" onclick="register()" value="Register" />
+          </form>
+        </div>
+      </div>
+      <script src="js/account.js"></script>
+    </div>
+  </body>
+</html>
