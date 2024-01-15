@@ -51,8 +51,8 @@
           <form id="registerForm">
             <input type="text" placeholder="First Name" id="first_name" />
             <input type="text" placeholder="Last Name" id="last_name" />
-            <input type="text" placeholder="Email" id="email" />
-            <input type="password" placeholder="Password" id="password" />
+            <input type="text" placeholder="Email" id="email_register" />
+            <input type="password" placeholder="Password" id="password_register" />
             <input type="date" placeholder="Birthday" id="birthday" />
             <input type="text" placeholder="Phone Number" id="phone_number" />
             <input
@@ -61,6 +61,9 @@
               id="profile_picture"
             />
             <input type="text" placeholder="Username" id="username" />
+            <div id="error"></div>
+
+            <p align="center" id="error" class="text-danger"></p>
             <input type="button" onclick="register()" value="Register" />
           </form>
         </div>
