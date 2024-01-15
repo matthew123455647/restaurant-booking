@@ -23,3 +23,8 @@ node_modules/
 
 # Ignore coverage reports
 coverage/
+
+# Ignore terraform excutable files
+/jerlyn-terraform/.terraform/
+/matthew-terraform/.terraform/
+/ziyu-terraform/.terraform/
