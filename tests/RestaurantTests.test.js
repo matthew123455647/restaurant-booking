@@ -10,7 +10,7 @@ describe("RestaurantUtil Tests", () => {
     it("should return a restaurant by name", async () => {
       const req = {
         params: {
-          name: "McDonalds", // Assuming 'McDonalds' exists in the test data
+          name: "PUTIEN", // Assuming 'McDonalds' exists in the test data
         },
       };
       const res = {
