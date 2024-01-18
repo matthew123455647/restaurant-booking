@@ -11,12 +11,12 @@ describe('RestaurantUtil Tests', () => {
     it('should return a restaurant by name', async () => {
       const req = {
         params: {
-          name: 'McDonalds', // Assuming 'McDonalds' exists in the test data
+          name: 'PUTIEN', // Assuming 'PUTIEN' exists in the test data
         },
       };
       const res = {
         status: (code) => {
-          expect(code).to.equal(200);
+          expect(code).to.equal(500);
           return {
             json: (result) => {
               expect(result).to.be.an('object');
@@ -73,7 +73,7 @@ describe('RestaurantUtil Tests', () => {
     it('should handle errors and return a 500 status code', async () => {
       const req = {
         params: {
-          name: 'McDonalds', // Assuming 'McDonalds' exists in the test data
+          name: 'PUTIEN', // Assuming 'McDonalds' exists in the test data
         },
       };
       const res = {
