@@ -29,7 +29,7 @@ describe('Test CommentUtils and resource related features', () => {
         const req = {
             body: {
                 username: "johndoe",
-                restaurantName: "McDonalds",
+                restaurantName: "The Boiler",
                 rating: "5",
                 review: "bad",
                 dateOfVisit: "30/10/2023",
@@ -62,7 +62,7 @@ describe('Test CommentUtils and resource related features', () => {
     it('Should handle invalid input gracefully', async () => {
         const reqMissingUsername = {
             body: {
-                restaurantName: "Pizza Hut",
+                restaurantName: "The Boiler",
                 rating: "3",
                 review: "okay",
                 dateOfVisit: "25/11/2023",
@@ -97,7 +97,7 @@ describe('Test CommentUtils and resource related features', () => {
             body: {
                 // Provide valid comment data
                 username: "johndoe",
-                restaurantName: "KFC",
+                restaurantName: "Aston",
                 rating: "4",
                 review: "good",
                 dateOfVisit: "01/11/2023",
@@ -123,7 +123,7 @@ describe('Test CommentUtils and resource related features', () => {
             body: {
                 // Provide valid comment data
                 username: "johndoe",
-                restaurantName: "Burger King",
+                restaurantName: "PUTIEN",
                 rating: "3",
                 review: "average",
                 dateOfVisit: "05/11/2023",
