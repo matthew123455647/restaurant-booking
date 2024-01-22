@@ -86,7 +86,7 @@ function register() {
     jsonData.profile_picture == "" ||
     jsonData.username == ""
   ) {
-    document.getElementById("error").innerHTML = "All fields are required!";
+    document.getElementById("registerError").innerHTML = "All fields are required!";
     console.log(jsonData);
     return;
   }
@@ -100,7 +100,7 @@ function register() {
     if (response.message == undefined) {
       window.location.href = "index.html";
     } else {
-      document.getElementById("error").innerHTML = "Authentication failed!";
+      document.getElementById("registerError").innerHTML = "Authentication failed!";
     }
   };
   request.send(JSON.stringify(jsonData));
@@ -112,7 +112,7 @@ function login() {
   jsonData.email = document.getElementById("email").value;
   jsonData.password = document.getElementById("password").value;
   if (jsonData.email == "" || jsonData.password == "") {
-    document.getElementById("error").innerHTML = "All fields are required!";
+    document.getElementById("LoginError").innerHTML = "All fields are required!";
     return;
   }
   var request = new XMLHttpRequest();
@@ -125,7 +125,7 @@ function login() {
       sessionStorage.setItem("email", jsonData.email);
       window.location.href = "index.html";
     } else {
-      document.getElementById("error").innerHTML = "Invalid credentials!";
+      document.getElementById("loginError").innerHTML = "Invalid credentials!";
     }
   };
   request.send(JSON.stringify(jsonData));
