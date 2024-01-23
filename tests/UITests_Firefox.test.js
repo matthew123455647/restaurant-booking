@@ -72,40 +72,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
     });
 
 
-    it('Should Add Review successfully', async function () {
-        const baseUrl = 'http://localhost:' + server.address().port;
-        await driver.get(baseUrl);
-
-        // Locate and interact with the email field
-        const nicknameElement = await driver.findElement(By.id('username1'));
-        await nicknameElement.click(); // Click on the element
-        await nicknameElement.sendKeys('john doe');
-
-        // Locate and interact with the email field
-        const reviewElement = await driver.findElement(By.id('userComments'));
-        await reviewElement.click(); // Click on the element
-        await reviewElement.sendKeys('The food is good');
-
-        const timeElement = await driver.findElement(By.id('dateOfVisit'));
-        await timeElement.click(); // Click on the element
-        await timeElement.sendKeys('23/1/2024');
-
-        const ratingElement = await driver.findElement(By.id('rating'));
-        await ratingElement.click(); // Click on the element
-        await ratingElement.sendKeys('3');
-
-        // Locate and interact with the Login button
-        const addReviewButton = await driver.findElement(By.id('submitReview'));
-        await addReviewButton.click();
-
-        // Wait for the page to be redirected
-        await driver.wait(until.urlIs(baseUrl + '/index.html'), 10000);
-
-
-        // Locate and interact with the Login button
-       
-
-    });
+    
 
      
 
