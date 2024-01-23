@@ -63,76 +63,94 @@
 //     document.getElementById("message").setAttribute("class", "text-danger");
 //   }
 // }
-
-function register() {
-  var response = "";
-  var jsonData = new Object();
-  jsonData.first_name = document.getElementById("first_name").value;
-  jsonData.last_name = document.getElementById("last_name").value;
-  jsonData.email = document.getElementById("email_register").value;
-  jsonData.password = document.getElementById("password_register").value;
-  jsonData.birthday = document.getElementById("birthday").value;
-  jsonData.phone_number = document.getElementById("phone_number").value;
-  jsonData.profile_picture = document.getElementById("profile_picture").value;
-  jsonData.username = document.getElementById("username").value;
-
-  if (
-    jsonData.first_name == "" ||
-    jsonData.last_name == "" ||
-    jsonData.email == "" ||
-    jsonData.password == "" ||
-    jsonData.birthday == "" ||
-    jsonData.phone_number == "" ||
-    jsonData.profile_picture == "" ||
-    jsonData.username == ""
-  ) {
-    document.getElementById("registerError").innerHTML = "All fields are required!";
-    console.log(jsonData);
-    return;
-  }
-
-  var request = new XMLHttpRequest();
-  request.open("POST", "/register", true);
-  request.setRequestHeader("Content-Type", "application/json");
-  request.onload = function () {
-    response = JSON.parse(request.responseText);
-    console.log(response);
-    if (response.message == undefined) {
-      window.location.href = "index.html";
-    } else {
-      document.getElementById("registerError").innerHTML = "Authentication failed!";
-    }
-  };
-  request.send(JSON.stringify(jsonData));
-}
-
-function login() {
-  var response = "";
-  var jsonData = new Object();
-  jsonData.email = document.getElementById("email").value;
-  jsonData.password = document.getElementById("password").value;
-  if (jsonData.email == "" || jsonData.password == "") {
-    document.getElementById("LoginError").innerHTML = "All fields are required!";
-    return;
-  }
-  var request = new XMLHttpRequest();
-  request.open("POST", "/login", true);
-  request.setRequestHeader("Content-Type", "application/json");
-  request.onload = function () {
-    response = JSON.parse(request.responseText);
-    console.log(response);
-    if (response.message == "Login successful!") {
-      sessionStorage.setItem("email", jsonData.email);
-      window.location.href = "index.html";
-    } else {
-      document.getElementById("loginError").innerHTML = "Invalid credentials!";
-    }
-  };
-  request.send(JSON.stringify(jsonData));
-}
 // module.exports = {
 //   readJSON,
 //   writeJSON,
 //   register,
 //   login,
 // };
+// function rfunction login() {
+function login() {
+  var response = "";
+
+  var jsonData = new Object();
+  jsonData.email = document.getElementById("email").value;
+  jsonData.password = document.getElementById("password").value;
+
+  if (jsonData.email == "" || jsonData.password == "") {
+    document.getElementById("error").innerHTML = "All fields are required!";
+    return;
+  }
+
+  if (jsonData.email.includes("@")) {
+    document.getElementById("error").innerHTML = "";
+
+    var request = new XMLHttpRequest();
+
+    request.open("POST", "/login", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.onload = function () {
+      try {
+        response = JSON.parse(request.responseText);
+        console.log(response);
+
+        if (response.message == "Login successful!") {
+          sessionStorage.setItem("email", jsonData.email);
+          alert("User authentication successful!");
+          window.location.href = "home.html";
+        } else {
+          document.getElementById("error").innerHTML = "Invalid credentials!";
+        }
+      } catch (error) {
+        console.error(error);
+        document.getElementById("error").innerHTML = "Error resetting form";
+      }
+    };
+
+    request.send(JSON.stringify(jsonData));
+  } else {
+    // Show validation error
+    document.getElementById("error").innerHTML =
+      "Validation error, email should have @";
+  }
+}
+function register() {
+  var response = "";
+
+  var jsonData = new Object();
+  jsonData.email = document.getElementById("email").value;
+  jsonData.password = document.getElementById("password").value;
+
+  var confirmPassword = document.getElementById("confirmPassword").value;
+  if (
+    jsonData.email == "" ||
+    jsonData.password == "" ||
+    confirmPassword == ""
+  ) {
+    document.getElementById("error").innerHTML = "All fields are required!";
+    return;
+  } else if (jsonData.password != confirmPassword) {
+    document.getElementById("error").innerHTML = "Password does not match!";
+    return;
+  }
+
+  var request = new XMLHttpRequest();
+
+  request.open("POST", "/register", true);
+  request.setRequestHeader("Content-Type", "application/json");
+
+  request.onload = function () {
+    response = JSON.parse(request.responseText);
+    console.log(response);
+    if (response.message == undefined) {
+      window.location.href = "index.html";
+      alert("Registration successful! You can now log in.");
+    } else {
+      document.getElementById("error").innerHTML =
+        "Registration failed, email requires @!";
+    }
+  };
+
+  request.send(JSON.stringify(jsonData));
+}
+  
