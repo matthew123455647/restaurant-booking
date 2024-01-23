@@ -28,6 +28,10 @@ describe('Testing for Chicken Kitchen', function () {
 
 it('Should display matching restaurants when searching', async function () {
     const baseUrl = 'http://localhost:' + server.address().port;
+
+    // Maximize the browser window
+    await driver.manage().window().maximize();
+
     await driver.get(baseUrl);
 
     // Assuming the search input has the id "searchInput"
@@ -48,12 +52,12 @@ it('Should display matching restaurants when searching', async function () {
 
     // Assert that each displayed title contains the search query
     displayedTitlesText.forEach(title => {
-        expect(title.toLowerCase()).to.include('putien');
+      expect(title.toLowerCase()).to.include('putien');
     });
-});
+  });
 
 
-it('Should clear results when search input is cleared', async function () {
+  it('Should clear results when search input is cleared', async function () {
     const baseUrl = 'http://localhost:' + server.address().port;
     await driver.get(baseUrl);
 
@@ -63,7 +67,6 @@ it('Should clear results when search input is cleared', async function () {
     // Clear the search input
     await searchInput.clear();
 
-    
 
     
 });
