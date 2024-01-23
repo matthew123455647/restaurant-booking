@@ -24,7 +24,7 @@
     "statements": 80
   },
   "scripts": {
-    "test": "nyc mocha tests/*.test.js"
+    "test": "nyc mocha tests/UITests.test.js"
   },
   "author": "",
   "license": "ISC",

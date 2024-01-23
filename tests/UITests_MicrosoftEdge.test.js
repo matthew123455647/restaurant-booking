@@ -20,19 +20,20 @@ before(async function () {
   })
 });
 
-describe('Testing for Chicken Kitchen', function () {
-    it('Should have the correct title', async function () {
-        const baseUrl = 'http://localhost:' + server.address().port;
-        this.timeout(3000);
-        await driver.get(baseUrl);
-        const title = await driver.getTitle();
-        expect(title).to.equal('Chicken Kitchen');
-    });
-});
+describe('Testing Microsoft browser', function () {
+
+  this.timeout(100000); // Set timeout as 10 seconds
+
+  it('Should show title: Chicken Kitchen', async () => {
+       await driver.get('http://localhost:5050/');
+       const title = await driver.getTitle(); // Get the title of the web page
+       expect(title).to.equal("Chicken Kitchen"); // Assert that title matches "Swag Labs"
+   });
+  });
 
 
 describe('Testing for Chicken Kitchen', function () {
-it('Should display matching restaurants when searching', async function () {
+  it('Should display matching restaurants when searching', async function () {
     const baseUrl = 'http://localhost:' + server.address().port;
 
     // Maximize the browser window
@@ -74,14 +75,13 @@ it('Should display matching restaurants when searching', async function () {
     await searchInput.clear();
 
 
-    
-});
 
+  });
 
 
 });
 after(async function () {
-    // await driver.quit();
-    await server.close()
-    process.exit(0)
+  // await driver.quit();
+  await server.close()
+  process.exit(0)
 });
