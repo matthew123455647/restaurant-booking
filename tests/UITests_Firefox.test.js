@@ -29,6 +29,84 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
          expect(title).to.equal("Chicken Kitchen"); // Assert that title matches "Swag Labs"
      });
 
+     it('Should display matching restaurants when searching', async function () {
+        const baseUrl = 'http://localhost:' + server.address().port;
+        await driver.get(baseUrl);
+    
+        // Assuming the search input has the id "searchInput"
+        const searchInput = await driver.findElement(By.id('searchInput'));
+    
+        // Type a search query
+        await searchInput.sendKeys('PUTIEN');
+    
+        // Wait for the results to update (replace with an appropriate wait condition)
+        await driver.wait(until.elementLocated(By.className('card')), 5000);
+    
+        // Get the displayed restaurant names after search
+        const displayedTitles = await driver.findElements(By.css('.card-title'));
+        const displayedTitlesText = await Promise.all(displayedTitles.map(title => title.getText()));
+    
+        // Assert that at least one result is displayed
+        expect(displayedTitlesText.length).to.be.greaterThan(0);
+    
+        // Assert that each displayed title contains the search query
+        displayedTitlesText.forEach(title => {
+            expect(title.toLowerCase()).to.include('putien');
+        });
+    });
+    
+    
+    it('Should clear results when search input is cleared', async function () {
+        const baseUrl = 'http://localhost:' + server.address().port;
+        await driver.get(baseUrl);
+
+        // Assuming the search input has the id "searchInput"
+        const searchInput = await driver.findElement(By.id('searchInput'));
+    
+        // Clear the search input
+        await searchInput.clear();
+    
+        
+    
+        
+    });
+
+
+    it('Should Add Review successfully', async function () {
+        const baseUrl = 'http://localhost:' + server.address().port;
+        await driver.get(baseUrl);
+
+        // Locate and interact with the email field
+        const nicknameElement = await driver.findElement(By.id('username1'));
+        await nicknameElement.click(); // Click on the element
+        await nicknameElement.sendKeys('john doe');
+
+        // Locate and interact with the email field
+        const reviewElement = await driver.findElement(By.id('userComments'));
+        await reviewElement.click(); // Click on the element
+        await reviewElement.sendKeys('The food is good');
+
+        const timeElement = await driver.findElement(By.id('dateOfVisit'));
+        await timeElement.click(); // Click on the element
+        await timeElement.sendKeys('23/1/2024');
+
+        const ratingElement = await driver.findElement(By.id('rating'));
+        await ratingElement.click(); // Click on the element
+        await ratingElement.sendKeys('3');
+
+        // Locate and interact with the Login button
+        const addReviewButton = await driver.findElement(By.id('submitReview'));
+        await addReviewButton.click();
+
+        // Wait for the page to be redirected
+        await driver.wait(until.urlIs(baseUrl + '/index.html'), 10000);
+
+
+        // Locate and interact with the Login button
+       
+
+    });
+
      
 
 
