@@ -20,11 +20,19 @@ before(async function () {
   })
 });
 
-describe('Testing Microsoft Edge browser', function () {
+describe('Testing for Chicken Kitchen', function () {
+    it('Should have the correct title', async function () {
+        const baseUrl = 'http://localhost:' + server.address().port;
+        this.timeout(3000);
+        await driver.get(baseUrl);
+        const title = await driver.getTitle();
+        expect(title).to.equal('Chicken Kitchen');
+    });
+});
 
-  this.timeout(100000); // Set timeout as 100 seconds
 
-  it('Should display matching restaurants when searching', async function () {
+describe('Testing for Chicken Kitchen', function () {
+it('Should display matching restaurants when searching', async function () {
     const baseUrl = 'http://localhost:' + server.address().port;
 
     // Maximize the browser window
@@ -53,23 +61,21 @@ describe('Testing Microsoft Edge browser', function () {
       expect(title.toLowerCase()).to.include('putien');
     });
   });
-    
-    
-    it('Should clear results when search input is cleared', async function () {
-        const baseUrl = 'http://localhost:' + server.address().port;
-        await driver.get(baseUrl);
 
-        // Assuming the search input has the id "searchInput"
-        const searchInput = await driver.findElement(By.id('searchInput'));
-    
-        // Clear the search input
-        await searchInput.clear();
-    
-        
-    
-        
-    });
 
+  it('Should clear results when search input is cleared', async function () {
+    const baseUrl = 'http://localhost:' + server.address().port;
+    await driver.get(baseUrl);
+
+    // Assuming the search input has the id "searchInput"
+    const searchInput = await driver.findElement(By.id('searchInput'));
+
+    // Clear the search input
+    await searchInput.clear();
+
+
+    
+});
 
 
 

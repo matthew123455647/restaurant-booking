@@ -25,7 +25,7 @@ describe('Testing for Chicken Kitchen', function () {
 });
 
 
-
+describe('Testing for Chicken Kitchen', function () {
 it('Should display matching restaurants when searching', async function () {
     const baseUrl = 'http://localhost:' + server.address().port;
 
@@ -73,7 +73,7 @@ it('Should display matching restaurants when searching', async function () {
 
 
 
-
+});
 // Add more UI tests for other functionalities
 
 
