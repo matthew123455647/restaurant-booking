@@ -3,6 +3,6 @@ services:
   build-rms: 
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: DockerFile
     image: matthew123567/rms-docker-img:latest
     container_name: rms-docker-container
