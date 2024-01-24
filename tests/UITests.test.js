@@ -19,11 +19,11 @@ describe('Testing Chrome browser', function () {
     this.timeout(100000); // Set timeout as 10 seconds
 
     it('Should show title: Chicken Kitchen', async () => {
-         await driver.get('http://localhost:5050/');
-         const title = await driver.getTitle(); // Get the title of the web page
-         expect(title).to.equal("Chicken Kitchen"); // Assert that title matches "Swag Labs"
-     });
+        await driver.get('http://localhost:5050/');
+        const title = await driver.getTitle(); // Get the title of the web page
+        expect(title).to.equal("Chicken Kitchen"); // Assert that title matches "Swag Labs"
     });
+});
 // Other Chrome Browser test cases...
 
 
@@ -75,7 +75,26 @@ describe('Testing for Search Restaurant', function () {
 
 describe('Testing for Restaurant review', function () {
 
-    it('Should pop out the modal when PUTIEN is clicked', async function () {
+    /*    it('Should pop out the modal when PUTIEN is clicked', async function () {
+            const baseUrl = 'http://localhost:' + server.address().port;
+            await driver.get(baseUrl);
+    
+            // Assuming there is a function viewOneRest that shows the modal
+            const restaurantCard = await driver.findElement(By.id('viewclick0')); // Adjust the selector based on your application
+            await restaurantCard.click();
+    
+            // Wait for the modal to appear (replace with appropriate selector and condition)
+            const modalElement = await driver.findElement(By.id('restaurantModal'));
+            await driver.wait(until.elementIsVisible(modalElement), 5000); // Adjust the selector based on your application
+    
+            // Assert that the modal is displayed
+            const isModalDisplayed = await modalElement.isDisplayed();
+            expect(isModalDisplayed, 'The restaurant modal should be displayed').to.be.true;
+        });*/
+
+
+    it('Should show review', async function () {
+        this.timeout(100000);
         const baseUrl = 'http://localhost:' + server.address().port;
         await driver.get(baseUrl);
 
@@ -84,21 +103,8 @@ describe('Testing for Restaurant review', function () {
         await restaurantCard.click();
 
         // Wait for the modal to appear (replace with appropriate selector and condition)
-        const modalElement = await driver.findElement(By.id('restaurantModal'));
+        const modalElement = await driver.findElement(By.id('restaurantsModal'));
         await driver.wait(until.elementIsVisible(modalElement), 5000); // Adjust the selector based on your application
-
-        // Assert that the modal is displayed
-        const isModalDisplayed = await modalElement.isDisplayed();
-        assert.isTrue(isModalDisplayed, 'The restaurant modal should be displayed');
-    });
-
-
-    it('Should show review', async function () {
-        this.timeout(100000);
-        const baseUrl = 'http://localhost:' + server.address().port;
-        await driver.get(baseUrl);
-
-        // ... existing test code ...
 
         // Click on the "Toggle Review" button
         const toggleReviewButton = await driver.findElement(By.id('toggle-review'));
@@ -125,14 +131,9 @@ describe('Testing for Restaurant review', function () {
         const descriptionSection = await driver.findElement(By.id('description-section'));
         const isDescriptionSectionVisible = await descriptionSection.isDisplayed();
         expect(isDescriptionSectionVisible).to.be.true;
-    });
-
-    it('Should add review successfully', async function () {
-        const baseUrl = 'http://localhost:' + server.address().port;
-        await driver.get(baseUrl);
 
         // Mocking user interactions
-        const addReviewButton = await driver.findElement(By.id('addReviewButton'));
+        const addReviewButton = await driver.findElement(By.id('addReview'));
         await addReviewButton.click();
 
         const usernameInput = await driver.findElement(By.id('username1'));
@@ -144,14 +145,14 @@ describe('Testing for Restaurant review', function () {
         const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
         await dateOfVisitInput.sendKeys('01/23/2024'); // Assuming MM/DD/YYYY format
 
-        const ratingInput = await driver.findElement(By.id('rating'));
-        await ratingInput.sendKeys('3');
+        const ratingInput = await driver.findElement(By.id('rating3'));
+        await ratingInput.click();
 
-        const submitReviewModal = await driver.findElement(By.xpath("//div[@class='modal-footer']//button[contains(text(), 'submitReview')]"));
-        await submitReviewModal.click();
+        const newReviewModal = await driver.findElement(By.id('submitReview'));
+        await newReviewModal.click();
 
         // Wait for the modal to dismiss (if applicable)
-        await driver.wait(until.stalenessOf(submitReviewModal), 5000);
+        await driver.wait(until.stalenessOf(newReviewModal), 5000);
 
         // Assuming you have a table with reviews and each review is represented by a tr element
         const tableUpdated = await driver.findElement(By.tagName('table'));
@@ -165,9 +166,20 @@ describe('Testing for Restaurant review', function () {
         expect(addedReviewContent).to.include('John Doe');
         expect(addedReviewContent).to.include('The food is good');
         expect(addedReviewContent).to.include('01/23/2024');
-        expect(addedReviewContent).to.include('3 stars');
+        expect(addedReviewContent).to.include('rating3');
     });
+
+
+
 });
+
+
+
+// Mocking user interactions
+
+
+
+
 
 
 

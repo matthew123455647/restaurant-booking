@@ -78,6 +78,88 @@ describe('Testing for Chicken Kitchen', function () {
 
   });
 
+  it('Should show review', async function () {
+    this.timeout(100000);
+    const baseUrl = 'http://localhost:' + server.address().port;
+    await driver.get(baseUrl);
+
+    // Assuming there is a function viewOneRest that shows the modal
+    const restaurantCard = await driver.findElement(By.id('viewclick0')); // Adjust the selector based on your application
+    await restaurantCard.click();
+
+    // Wait for the modal to appear (replace with appropriate selector and condition)
+    const modalElement = await driver.findElement(By.id('restaurantsModal'));
+    await driver.wait(until.elementIsVisible(modalElement), 5000); // Adjust the selector based on your application
+
+    // Click on the "Toggle Review" button
+    const toggleReviewButton = await driver.findElement(By.id('toggle-review'));
+    await toggleReviewButton.click();
+
+    // Wait for the review section to be visible
+    await driver.wait(until.elementIsVisible(driver.findElement(By.id('review-section'))), 10000);
+
+    // Assert that the review section is now visible
+    const reviewSection = await driver.findElement(By.id('review-section'));
+    const isReviewSectionVisible = await reviewSection.isDisplayed();
+    expect(isReviewSectionVisible).to.be.true;
+
+    // ... any additional assertions related to the review content ...
+
+    // Optionally, you can click on the "Toggle Description" button to go back to the description
+    const toggleDescriptionButton = await driver.findElement(By.id('toggle-description'));
+    await toggleDescriptionButton.click();
+
+    // Wait for the description section to be visible
+    await driver.wait(until.elementIsVisible(driver.findElement(By.id('description-section'))), 10000);
+
+    // Assert that the description section is now visible
+    const descriptionSection = await driver.findElement(By.id('description-section'));
+    const isDescriptionSectionVisible = await descriptionSection.isDisplayed();
+    expect(isDescriptionSectionVisible).to.be.true;
+
+    // Mocking user interactions
+    const addReviewButton = await driver.findElement(By.id('addReview'));
+    await addReviewButton.click();
+
+    const usernameInput = await driver.findElement(By.id('username1'));
+    await usernameInput.sendKeys('John Doe');
+
+    const userCommentsInput = await driver.findElement(By.id('userComments'));
+    await userCommentsInput.sendKeys('The food is good');
+
+    const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
+    await dateOfVisitInput.sendKeys('01/23/2024'); // Assuming MM/DD/YYYY format
+
+    const ratingInput = await driver.findElement(By.id('rating3'));
+    await ratingInput.click();
+
+    const newReviewModal = await driver.findElement(By.id('submitReview'));
+    
+    // Ensure the submit button is clickable before clicking
+    await driver.wait(until.elementIsEnabled(newReviewModal), 5000);
+
+    await newReviewModal.click();
+
+    // Wait for the modal to dismiss (if applicable)
+    await driver.wait(until.stalenessOf(newReviewModal), 5000);
+
+    // Assuming you have a table with reviews and each review is represented by a tr element
+    const tableUpdated = await driver.findElement(By.tagName('table'));
+    const rowsUpdated = await tableUpdated.findElements(By.tagName('tr'));
+
+    // Assert that the table rows increased by 1
+    expect(rowsUpdated.length).to.equal(2); // Assuming the first row is a header
+
+    // Additional assertions to validate the content of the added review
+    const addedReviewContent = await rowsUpdated[1].getText();
+    expect(addedReviewContent).to.include('John Doe');
+    expect(addedReviewContent).to.include('The food is good');
+    expect(addedReviewContent).to.include('01/23/2024');
+    expect(addedReviewContent).to.include('rating3');
+});
+
+
+
 
 });
 after(async function () {

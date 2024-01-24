@@ -10,7 +10,8 @@
       "utils/AddCommentUtil.js",
       "utils/BookingUtil.js",
       "utils/LoginUtil.js",
-      "utils/UserUtil.js"
+      "utils/UserUtil.js",
+      "index.js"
     ],
     "exclude": [],
     "reporter": [
@@ -24,7 +25,7 @@
     "statements": 80
   },
   "scripts": {
-    "test": "nyc mocha tests/UITests.test.js"
+    "test": "nyc mocha tests/*.test.js"
   },
   "author": "",
   "license": "ISC",
@@ -32,6 +33,7 @@
     "body-parser": "^1.20.2",
     "chai": "^4.3.10",
     "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.4.0",
     "chromedriver": "^120.0.1",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
