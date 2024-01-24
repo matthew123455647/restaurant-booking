@@ -1,8 +1,8 @@
 version: '3'
-services:
-build-rms:
-build:
-context: .
-dockerfile: Dockerfile
-image: matthew123567/rms-docker-img:latest
-container_name: rms-docker-container
+services: 
+  build-rms: 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: matthew123567/rms-docker-img:lastest
+    container_name: rms-docker-container
