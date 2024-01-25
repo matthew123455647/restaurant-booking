@@ -78,12 +78,13 @@ function login() {
   jsonData.password = document.getElementById("password").value;
 
   if (jsonData.email == "" || jsonData.password == "") {
-    document.getElementById("error").innerHTML = "All fields are required!";
+    document.getElementById("loginError").innerHTML =
+      "All fields are required!";
     return;
   }
 
   if (jsonData.email.includes("@")) {
-    document.getElementById("error").innerHTML = "";
+    document.getElementById("loginError").innerHTML = "";
 
     var request = new XMLHttpRequest();
 
@@ -99,18 +100,20 @@ function login() {
           alert("User authentication successful!");
           window.location.href = "home.html";
         } else {
-          document.getElementById("error").innerHTML = "Invalid credentials!";
+          document.getElementById("loginError").innerHTML =
+            "Invalid credentials!";
         }
-      } catch (error) {
-        console.error(error);
-        document.getElementById("error").innerHTML = "Error resetting form";
+      } catch (loginError) {
+        console.loginError(loginError);
+        document.getElementById("loginError").innerHTML =
+          "Error resetting form";
       }
     };
 
     request.send(JSON.stringify(jsonData));
   } else {
     // Show validation error
-    document.getElementById("error").innerHTML =
+    document.getElementById("loginError").innerHTML =
       "Validation error, email should have @";
   }
 }
@@ -153,4 +156,3 @@ function register() {
 
   request.send(JSON.stringify(jsonData));
 }
-  

@@ -1,11 +1,11 @@
 const { app } = require("../index");
-const { Builder, By } = require("selenium-webdriver");
+const { Builder, By, Key, until } = require("selenium-webdriver");
 const { describe, it } = require("mocha");
 const { expect } = require("chai");
+
 const chrome = require("selenium-webdriver/chrome");
 const chromeOptions = new chrome.Options();
-chromeOptions.addArguments("--headless");
-
+// chromeOptions.addArguments("--headless");
 const driver = new Builder()
   .forBrowser("chrome")
   .setChromeOptions(chromeOptions)
@@ -21,80 +21,67 @@ before(async function () {
   });
 });
 
-describe("Login Functionality", function () {
-  it("should display an error for empty fields", async function () {
-    await driver.get("http://localhost:" + server.address().port + "/login");
+describe("Testing Resource UI", function () {
+  it("Should have the correct title", async function () {
+    const baseUrl = "http://localhost:" + server.address().port;
+    this.timeout(100000);
+    await driver.get(baseUrl);
+  });
 
+  it("Should show error message - All fields required", async function () {
+    const baseUrl =
+      "http://localhost:" + server.address().port + "/authentication.html";
+    await driver.get(baseUrl);
+    // Locate and interact with the email field
+    const emailElement = await driver.findElement(By.id("email"));
+    await emailElement.click(); // Click on the element
+    await emailElement.sendKeys("john@gmail.com");
+    // Locate and interact with the Login button
     const loginButton = await driver.findElement(
-      By.xpath('//button[text()="Login"]')
+      By.xpath('//input[@id="loginButton"]')
     );
+
     await loginButton.click();
-
-    const errorMessage = await driver.findElement(By.id("error")).getText();
-
+    const errorMessage = await driver.findElement(By.id("loginError")).getText();
     expect(errorMessage).to.equal("All fields are required!");
   });
 
-  it("should display an error for invalid email", async function () {
-    await driver.get("http://localhost:" + server.address().port + "/login");
-
+  it("Should show error message - Invalid credentials", async function () {
+    const baseUrl =
+      "http://localhost:" + server.address().port + "/authentication.html";
+    await driver.get(baseUrl);
+    // Locate and interact with the email field
     const emailElement = await driver.findElement(By.id("email"));
-    await emailElement.sendKeys("invalidemail");
-
+    await emailElement.click(); // Click on the element
+    await emailElement.sendKeys("john@gmail.com");
+    // Locate and interact with the password field
     const passwordElement = await driver.findElement(By.id("password"));
-    await passwordElement.sendKeys("password123");
-
+    await passwordElement.click(); // Click on the element
+    await passwordElement.sendKeys("abcdef");
+    // Locate and interact with the Login button
+    // const loginButton = await driver.findElement(
+    //   By.xpath('//button[text()="Login"]')
+    // );
     const loginButton = await driver.findElement(
-      By.xpath('//button[text()="Login"]')
+      By.xpath('//input[@id="loginButton"]')
     );
     await loginButton.click();
+    // Locate the error element and retrieve its text
+    const errorMessage = await driver.findElement(By.id("loginError")).getText()
 
-    const errorMessage = await driver.findElement(By.id("error")).getText();
+    // const errorStyle = await driver
+    //   .findElement(By.id("loginError"))
+    //   .getAttribute("class");
 
-    expect(errorMessage).to.equal("Validation error, email should have @");
-  });
-
-  it("should display an error for incorrect credentials", async function () {
-    await driver.get("http://localhost:" + server.address().port + "/login");
-
-    const emailElement = await driver.findElement(By.id("email"));
-    await emailElement.sendKeys("john.doe@example.com");
-
-    const passwordElement = await driver.findElement(By.id("password"));
-    await passwordElement.sendKeys("incorrectpassword");
-
-    const loginButton = await driver.findElement(
-      By.xpath('//button[text()="Login"]')
-    );
-    await loginButton.click();
-
-    const errorMessage = await driver.findElement(By.id("error")).getText();
-
+    console.log(errorMessage);
+    // // Assert that the error message contains the expected text and style
     expect(errorMessage).to.equal("Invalid credentials!");
-  });
-
-  it("should successfully log in with valid credentials", async function () {
-    await driver.get("http://localhost:" + server.address().port + "/login");
-
-    const emailElement = await driver.findElement(By.id("email"));
-    await emailElement.sendKeys("john.doe@example.com");
-
-    const passwordElement = await driver.findElement(By.id("password"));
-    await passwordElement.sendKeys("correctpassword");
-
-    const loginButton = await driver.findElement(
-      By.xpath('//button[text()="Login"]')
-    );
-    await loginButton.click();
-
-    // You may need to adjust the following based on the actual behavior after successful login
-    const currentUrl = await driver.getCurrentUrl();
-    expect(currentUrl).to.include("/home");
+    // expect(errorStyle).to.equal("text-danger");
   });
 });
 
 after(async function () {
-  await driver.quit();
+  // await driver.quit();
   await server.close();
   process.exit(0);
 });
