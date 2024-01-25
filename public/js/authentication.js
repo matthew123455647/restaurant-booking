@@ -98,7 +98,7 @@ function login() {
         if (response.message == "Login successful!") {
           sessionStorage.setItem("email", jsonData.email);
           alert("User authentication successful!");
-          window.location.href = "home.html";
+          window.location.href = "index.html";
         } else {
           document.getElementById("loginError").innerHTML =
             "Invalid credentials!";
@@ -146,7 +146,8 @@ function register() {
     response = JSON.parse(request.responseText);
     console.log(response);
     if (response.message == undefined) {
-      window.location.href = "index.html";
+      // window.location.href = "/";
+      window.history.back();
       alert("Registration successful! You can now log in.");
     } else {
       document.getElementById("error").innerHTML =
