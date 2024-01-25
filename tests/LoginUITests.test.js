@@ -174,6 +174,31 @@ describe("Testing Resource UI", function () {
     expect(errorMessage).to.equal("Validation error, email should have @");
   });
 
+  it("Should show error message - Invalid email and password format", async function () {
+    const baseUrl =
+      "http://localhost:" + server.address().port + "/authentication.html";
+    await driver.get(baseUrl);
+
+    // Locate and interact with the email field
+    const emailElement = await driver.findElement(By.id("email"));
+    await emailElement.click(); // Click on the element
+    await emailElement.sendKeys("invalid@email");
+
+    // Locate and interact with the password field
+    const passwordElement = await driver.findElement(By.id("password"));
+    await passwordElement.click(); // Click on the element
+    await passwordElement.sendKeys("Invalid@Password");
+
+    // Locate and interact with the Login button
+    const loginButton = await driver.findElement(
+      By.xpath('//input[@id="loginButton"]')
+    );
+
+    await loginButton.click();
+    const errorMessage = await driver.findElement(By.id("loginError")).getText();
+    expect(errorMessage).to.equal("Invalid credentials!");
+  });
+
   it("Should show error message - Incorrect Password", async function () {
     const baseUrl =
       "http://localhost:" + server.address().port + "/authentication.html";

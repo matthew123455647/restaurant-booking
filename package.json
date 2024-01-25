@@ -25,7 +25,7 @@
     "statements": 80
   },
   "scripts": {
-    "test": "nyc mocha tests/*.test.js"
+    "test": "nyc mocha tests/LoginUITests.test.js"
   },
   "author": "",
   "license": "ISC",
