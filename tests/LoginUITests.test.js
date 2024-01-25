@@ -195,7 +195,9 @@ describe("Testing Resource UI", function () {
     );
 
     await loginButton.click();
-    const errorMessage = await driver.findElement(By.id("loginError")).getText();
+    const errorMessage = await driver
+      .findElement(By.id("loginError"))
+      .getText();
     expect(errorMessage).to.equal("Invalid credentials!");
   });
 
