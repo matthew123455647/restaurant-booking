@@ -33,7 +33,7 @@
       <div class="register-info-box">
         <h2>Don't have an account?</h2>
         <p>Lorem ipsum dolor sit amet</p>
-        <label id="label-login" for="log-login-show">Register</label>
+        <label id="lead-to-register" for="log-login-show">Register</label>
         <input type="radio" name="active-log-panel" id="log-login-show" />
       </div>
 
@@ -74,10 +74,8 @@
               id="profile_picture"
             />
             <input type="text" placeholder="Username" id="username" />
-            <div id="registerError"></div>
-
-            <p align="center" id="error" class="text-danger"></p>
-            <input type="button" onclick="register()" value="Register" />
+            <p align="center" id="registerError" class="text-danger"></p>
+            <input type="button" onclick="register()" value="Register" id="registerButton"/>
           </form>
         </div>
       </div>

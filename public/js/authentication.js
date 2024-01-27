@@ -1,75 +1,3 @@
-// async function register() {
-//   const formData = {
-//     first_name: document.getElementById("first_name").value,
-//     last_name: document.getElementById("last_name").value,
-//     email: document.getElementById("email").value,
-//     password: document.getElementById("password").value,
-//     birthday: document.getElementById("birthday").value,
-//     phone_number: document.getElementById("phone_number").value,
-//     profile_picture: document.getElementById("profile_picture").value,
-//     username: document.getElementById("username").value,
-//   };
-
-//   const response = await fetch("/register", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(formData),
-//   });
-
-//   const responseData = await response.json();
-
-//   if (response.ok) {
-//     // Display a popup message
-//     alert(`User ${formData.username} registered successfully!`);
-
-//     // Redirect to the home page
-//     window.location.href = "/index.html";
-//   } else {
-//     document.getElementById(
-//       "message"
-//     ).innerHTML = `Unable to register user: ${responseData.message}`;
-//     document.getElementById("message").setAttribute("class", "text-danger");
-//   }
-// }
-
-// async function login() {
-//   const formData = {
-//     email: document.getElementById("email").value,
-//     password: document.getElementById("password").value,
-//   };
-
-//   const response = await fetch("/login", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(formData),
-//   });
-
-//   const responseData = await response.json();
-
-//   if (response.ok) {
-//     // Display a popup message
-//     alert("Login successful!");
-
-//     // Redirect to the home page
-//     window.location.href = "/";
-//   } else {
-//     document.getElementById(
-//       "message"
-//     ).innerHTML = `Invalid credentials: ${responseData.message}`;
-//     document.getElementById("message").setAttribute("class", "text-danger");
-//   }
-// }
-// module.exports = {
-//   readJSON,
-//   writeJSON,
-//   register,
-//   login,
-// };
-// function rfunction login() {
 function login() {
   var response = "";
 
@@ -117,23 +45,80 @@ function login() {
       "Validation error, email should have @";
   }
 }
+
+function isValidEmail(email) {
+  // Add your email validation logic
+  // For example, you can use a regular expression
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function isValidPassword(password) {
+  // Add your password validation logic
+  // For example, you can require at least one uppercase letter and one special character
+  var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
+  return passwordRegex.test(password);
+}
+
+function isValidUsername(username) {
+  // Add your username validation logic
+  // For example, you can require at least 3 characters and allow only lowercase letters
+  var usernameRegex = /^[a-z]{3,}$/;
+  return usernameRegex.test(username);
+}
 function register() {
   var response = "";
-
   var jsonData = new Object();
-  jsonData.email = document.getElementById("email").value;
-  jsonData.password = document.getElementById("password").value;
+  jsonData.first_name = document.getElementById("first_name").value;
+  jsonData.last_name = document.getElementById("last_name").value;
+  jsonData.email = document.getElementById("email_register").value;
+  jsonData.password = document.getElementById("password_register").value;
+  jsonData.birthday = document.getElementById("birthday").value;
+  jsonData.phone_number = document.getElementById("phone_number").value;
+  jsonData.profile_picture = document.getElementById("profile_picture").value;
+  jsonData.username = document.getElementById("username").value;
 
-  var confirmPassword = document.getElementById("confirmPassword").value;
+  // Check if any field is empty
   if (
+    jsonData.first_name == "" ||
+    jsonData.last_name == "" ||
     jsonData.email == "" ||
     jsonData.password == "" ||
-    confirmPassword == ""
+    jsonData.birthday == "" ||
+    jsonData.phone_number == "" ||
+    jsonData.profile_picture == "" ||
+    jsonData.username == ""
   ) {
-    document.getElementById("error").innerHTML = "All fields are required!";
+    document.getElementById("registerError").innerHTML =
+      "All fields are required!";
     return;
-  } else if (jsonData.password != confirmPassword) {
-    document.getElementById("error").innerHTML = "Password does not match!";
+  }
+
+  // Validate email format
+  if (!isValidEmail(jsonData.email)) {
+    document.getElementById("registerError").innerHTML =
+      "Invalid email format!";
+    return;
+  }
+
+  // Validate password format
+  // if (!isValidPassword(jsonData.password)) {
+  //   document.getElementById("registerError").innerHTML =
+  //     "Invalid password format!";
+  //   return;
+  // }
+
+  // Validate password length
+  if (jsonData.password.length < 8) {
+    document.getElementById("registerError").innerHTML =
+      "Password must be at least 8 characters long!";
+    return;
+  }
+
+  // Validate username format
+  if (!isValidUsername(jsonData.username)) {
+    document.getElementById("registerError").innerHTML =
+      "Invalid username format!";
     return;
   }
 
@@ -143,14 +128,15 @@ function register() {
   request.setRequestHeader("Content-Type", "application/json");
 
   request.onload = function () {
-    response = JSON.parse(request.responseText);
+    var response = JSON.parse(request.responseText);
     console.log(response);
+
     if (response.message == undefined) {
-      // window.location.href = "/";
-      window.history.back();
+      // Registration successful
       alert("Registration successful! You can now log in.");
+      // Redirect to another page or perform additional actions
     } else {
-      document.getElementById("error").innerHTML =
+      document.getElementById("registerError").innerHTML =
         "Registration failed, email requires @!";
     }
   };
