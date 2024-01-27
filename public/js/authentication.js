@@ -47,27 +47,43 @@ function login() {
 }
 
 function isValidEmail(email) {
-  // Add your email validation logic
-  // For example, you can use a regular expression
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
 function isValidPassword(password) {
-  // Add your password validation logic
-  // For example, you can require at least one uppercase letter and one special character
-  var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
+  // Password must contain at least one capital letter and one special character
+  var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*?])[a-zA-Z0-9!@#$%^&*?]{6,}$/;
   return passwordRegex.test(password);
 }
 
+function isValidBirthday(birthday) {
+  // Add your birthday validation logic
+  // For example, check if the user is between 18 and 116 years old
+  const currentDate = new Date();
+  const birthDate = new Date(birthday);
+  const age = currentDate.getFullYear() - birthDate.getFullYear();
+  return age >= 18 && age <= 116;
+}
+
+function isValidPhoneNumber(phoneNumber) {
+  // Add your phone number validation logic
+  // For example, check if the phone number is exactly 8 characters long
+  return /^\d{8}$/.test(phoneNumber);
+}
+
+function isValidProfilePicture(profile_picture) {
+  // A simple profile_picture validation regex, you can use a more comprehensive one
+  const profile_pictureRegex = /^https?:\/\/\S+/;
+  return profile_pictureRegex.test(profile_picture);
+}
+
 function isValidUsername(username) {
-  // Add your username validation logic
-  // For example, you can require at least 3 characters and allow only lowercase letters
   var usernameRegex = /^[a-z]{3,}$/;
   return usernameRegex.test(username);
 }
+
 function register() {
-  var response = "";
   var jsonData = new Object();
   jsonData.first_name = document.getElementById("first_name").value;
   jsonData.last_name = document.getElementById("last_name").value;
@@ -97,28 +113,41 @@ function register() {
   // Validate email format
   if (!isValidEmail(jsonData.email)) {
     document.getElementById("registerError").innerHTML =
-      "Invalid email format!";
+      "Invalid email format! e.g. john@gmail.com";
     return;
   }
 
   // Validate password format
-  // if (!isValidPassword(jsonData.password)) {
-  //   document.getElementById("registerError").innerHTML =
-  //     "Invalid password format!";
-  //   return;
-  // }
-
-  // Validate password length
-  if (jsonData.password.length < 8) {
+  if (!isValidPassword(jsonData.password)) {
     document.getElementById("registerError").innerHTML =
-      "Password must be at least 8 characters long!";
+      "Invalid password format! Password must contain at least one capital letter, one special character and 6 chracters long.";
+    return;
+  }
+
+  // Validate birthday format
+  if (!isValidBirthday(jsonData.birthday)) {
+    document.getElementById("registerError").innerHTML =
+      "Invalid DOB format! You must be at least 18 years old to register";
+    return;
+  }
+
+  // Validate phone_number format
+  if (!isValidPhoneNumber(jsonData.phone_number)) {
+    document.getElementById("registerError").innerHTML =
+      "Invalid Phone Number!";
+    return;
+  }
+
+  // Validate profile_picture format
+  if (!isValidProfilePicture(jsonData.profile_picture)) {
+    document.getElementById("registerError").innerHTML = "Invalid URL!";
     return;
   }
 
   // Validate username format
   if (!isValidUsername(jsonData.username)) {
     document.getElementById("registerError").innerHTML =
-      "Invalid username format!";
+      "Invalid username format! Only small letters please. Min 3 chracters.";
     return;
   }
 
@@ -135,11 +164,20 @@ function register() {
       // Registration successful
       alert("Registration successful! You can now log in.");
       // Redirect to another page or perform additional actions
+      window.location.href = "/";
     } else {
       document.getElementById("registerError").innerHTML =
-        "Registration failed, email requires @!";
+        "Registration failed: " + response.message;
     }
   };
 
   request.send(JSON.stringify(jsonData));
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var leadToRegisterLabel = document.getElementById("lead-to-register");
+
+  leadToRegisterLabel.addEventListener("click", function () {
+    window.location.href = "register.html";
+  });
+});
