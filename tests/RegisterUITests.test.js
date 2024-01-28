@@ -57,7 +57,7 @@ describe("Testing Registration UI", function () {
     await driver
       .findElement(By.id("password_register"))
       .sendKeys("Password123!");
-    await driver.findElement(By.id("birthday")).sendKeys("2000-01-01");
+    await driver.findElement(By.id("birthday")).sendKeys("01-01-2000");
     await driver.findElement(By.id("phone_number")).sendKeys("12345678");
     await driver
       .findElement(By.id("profile_picture"))
@@ -94,7 +94,7 @@ describe("Testing Registration UI", function () {
     await driver
       .findElement(By.id("password_register"))
       .sendKeys("invalidpassword");
-    await driver.findElement(By.id("birthday")).sendKeys("2000-01-01");
+    await driver.findElement(By.id("birthday")).sendKeys("01-01-2000");
     await driver.findElement(By.id("phone_number")).sendKeys("12345678");
     await driver
       .findElement(By.id("profile_picture"))
@@ -191,6 +191,42 @@ describe("Testing Registration UI", function () {
       .getText();
     expect(errorMessage).to.equal("Invalid Phone Number!");
   });
+
+  it("Should show error message - Invalid URL", async function () {
+    const baseUrl =
+      "http://localhost:" + server.address().port + "/register.html";
+    await driver.get(baseUrl);
+
+    // Wait for the registration form to load (adjust the timeout as needed)
+    await driver.wait(until.elementLocated(By.id("registerForm")), 1000000000);
+
+    // Fill in all fields with valid data except for the profile picture (invalid URL)
+    await driver.findElement(By.id("first_name")).sendKeys("John");
+    await driver.findElement(By.id("last_name")).sendKeys("Doe");
+    await driver
+      .findElement(By.id("email_register"))
+      .sendKeys("john.doe@example.com");
+    await driver
+      .findElement(By.id("password_register"))
+      .sendKeys("ValidPassword1!");
+    await driver.findElement(By.id("birthday")).sendKeys("01-01-2000");
+    await driver.findElement(By.id("phone_number")).sendKeys("12345678");
+    await driver.findElement(By.id("profile_picture")).sendKeys("invalidurl");
+    await driver.findElement(By.id("username")).sendKeys("johndoe");
+
+    // Locate and interact with the register button in the registration form
+    const registerButtonInForm = await driver.findElement(
+      By.id("registerButton")
+    );
+    await registerButtonInForm.click();
+
+    // Wait for the error message
+    const errorMessage = await driver
+      .findElement(By.id("registerError"))
+      .getText();
+    expect(errorMessage).to.equal("Invalid URL!");
+  });
+
 });
 
 after(async function () {
