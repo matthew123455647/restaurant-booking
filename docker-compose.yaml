@@ -4,5 +4,5 @@ services:
     build: 
       context: .
       dockerfile: DockerFile
-    image: matthew123567/rms-docker-img:latest
+    image: matthew123455647/rms-docker-img:latest
     container_name: rms-docker-container
