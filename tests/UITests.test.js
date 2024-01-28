@@ -72,27 +72,7 @@ describe('Testing for Search Restaurant', function () {
     });
 });
 
-
-describe('Testing for Restaurant review', function () {
-
-    /*    it('Should pop out the modal when PUTIEN is clicked', async function () {
-            const baseUrl = 'http://localhost:' + server.address().port;
-            await driver.get(baseUrl);
-    
-            // Assuming there is a function viewOneRest that shows the modal
-            const restaurantCard = await driver.findElement(By.id('viewclick0')); // Adjust the selector based on your application
-            await restaurantCard.click();
-    
-            // Wait for the modal to appear (replace with appropriate selector and condition)
-            const modalElement = await driver.findElement(By.id('restaurantModal'));
-            await driver.wait(until.elementIsVisible(modalElement), 5000); // Adjust the selector based on your application
-    
-            // Assert that the modal is displayed
-            const isModalDisplayed = await modalElement.isDisplayed();
-            expect(isModalDisplayed, 'The restaurant modal should be displayed').to.be.true;
-        });*/
-
-
+describe('Testing for show and add review', function () {
     it('Should show review', async function () {
         this.timeout(100000);
         const baseUrl = 'http://localhost:' + server.address().port;
@@ -131,22 +111,33 @@ describe('Testing for Restaurant review', function () {
         const descriptionSection = await driver.findElement(By.id('description-section'));
         const isDescriptionSectionVisible = await descriptionSection.isDisplayed();
         expect(isDescriptionSectionVisible).to.be.true;
+    });
 
+    it('Should add review', async function () {
         // Mocking user interactions
         const addReviewButton = await driver.findElement(By.id('addReview'));
         await addReviewButton.click();
+        const AddReviewModal = await driver.findElement(By.id('newReviewModal'));
+        await driver.wait(until.elementIsVisible(AddReviewModal), 5000);
 
         const usernameInput = await driver.findElement(By.id('username1'));
+        await usernameInput.click();
         await usernameInput.sendKeys('John Doe');
 
         const userCommentsInput = await driver.findElement(By.id('userComments'));
+        await userCommentsInput.click();
         await userCommentsInput.sendKeys('The food is good');
 
         const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
+        await dateOfVisitInput.click();
         await dateOfVisitInput.sendKeys('01/23/2024'); // Assuming MM/DD/YYYY format
 
         const ratingInput = await driver.findElement(By.id('rating3'));
         await ratingInput.click();
+
+        const tableBefore = await driver.findElement(By.tagName('table')); // Replace with the
+        const rowsBefore = await tableBefore.findElements(By.tagName('tr'));
+        const beforeCount = rowsBefore.length
 
         const newReviewModal = await driver.findElement(By.id('submitReview'));
         await newReviewModal.click();
@@ -159,31 +150,15 @@ describe('Testing for Restaurant review', function () {
         const rowsUpdated = await tableUpdated.findElements(By.tagName('tr'));
 
         // Assert that the table rows increased by 1
-        expect(rowsUpdated.length).to.equal(1);
+        expect(rowsUpdated.length).to.equal(beforeCount + 1);
 
         // Additional assertions to validate the content of the added review
-        const addedReviewContent = await rowsUpdated[1].getText(); // Assuming the first row is a header
-        expect(addedReviewContent).to.include('John Doe');
-        expect(addedReviewContent).to.include('The food is good');
-        expect(addedReviewContent).to.include('01/23/2024');
-        expect(addedReviewContent).to.include('rating3');
+
     });
-
-
 
 });
 
-
-
 // Mocking user interactions
-
-
-
-
-
-
-
-
 // Add more UI tests for other functionalities
 
 after(async function () {

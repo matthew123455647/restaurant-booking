@@ -18,6 +18,8 @@ secret.txt
 *.log
 !error.log
 
+
+
 # Ignore Node.js modules
 node_modules/
 
