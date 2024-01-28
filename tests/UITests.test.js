@@ -6,6 +6,8 @@ const chrome = require('selenium-webdriver/chrome');
 const chromeOptions = new chrome.Options();
 // chromeOptions.addArguments('--headless');
 const driver = new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
+
+driver.manage().window().maximize();
 var server;
 before(async function () {
     server = await new Promise((resolve) => {

@@ -10,6 +10,8 @@ const driver = new Builder()
   .setEdgeOptions(new edge.Options())
   .build();
 
+  driver.manage().window().maximize();
+
 var server;
 
 before(async function () {
