@@ -10,7 +10,7 @@ describe("RestaurantUtil Tests", () => {
     it("should return a restaurant by name", async () => {
       const req = {
         params: {
-          name: "McDonalds", // Assuming 'McDonalds' exists in the test data
+          name: 'McDonalds', // Assuming 'McDonalds' exists in the test data
         },
       };
       const res = {
@@ -72,7 +72,7 @@ describe("RestaurantUtil Tests", () => {
     it("should handle errors and return a 500 status code", async () => {
       const req = {
         params: {
-          name: "McDonalds", // Assuming 'McDonalds' exists in the test data
+          name: 'McDonalds', // Assuming 'McDonalds' exists in the test data
         },
       };
       const res = {

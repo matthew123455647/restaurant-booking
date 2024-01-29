@@ -38,7 +38,7 @@ function displayRestaurants() {
         '<img class="card-img-top" src="' + thumbnail + '" alt="Card image cap" style="width: 100%; height: 150px; object-fit: cover;">' +
         '<div class="rating-pill" style="align-self: flex-end; padding: 5px 10px; background-color: #FFD700; color: #000; border-radius: 5px; font-weight: bold;">' + ratingNumber + '</div>' +
         '<div class="card-body" style="margin-bottom: 10px;">' +
-            '<h5 style="cursor: pointer; color: #333; font-weight: bold; margin: 0;" class="card-title" onclick="viewOneRest(\'' + (JSON.stringify(restaurant_array[count]).replaceAll('\"', '&quot;')).replaceAll('\'', '&apos;')  + '\'); showRestaurantReviews(' + count + ');">' + title + '</h5>' +
+            '<h5 style="cursor: pointer; color: #333; font-weight: bold; margin: 0;" class="card-title" id="viewclick'+count+'" onclick="viewOneRest(\'' + (JSON.stringify(restaurant_array[count]).replaceAll('\"', '&quot;')).replaceAll('\'', '&apos;')  + '\'); showRestaurantReviews(' + count + ');">' + title + '</h5>' +
             '<p class="card-text" style="color: #777;">' + locations + '</p>' +
         '</div>' +
     '</div>';
