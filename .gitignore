@@ -18,6 +18,10 @@ secret.txt
 *.log
 !error.log
 
+/rms-terraform/.terraform/
+
+
+
 # Ignore Node.js modules
 node_modules/
 

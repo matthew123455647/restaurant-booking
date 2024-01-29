@@ -34,7 +34,7 @@ console.log(restaurant_array[item]._id)
                             <div class="card">                                                                                  \
                                 <div class="card-body">                                                                         \
                                     <p class="card-text" id="rating' + i + '">' + review_array[i].review + "</p>               \
-                                    <small>by " + review_array[i].username + " @ " + review_array[i].timestamp + "</small>   \
+                                    <small>by " + review_array[i].username + " @ " + review_array[i].dateOfVisit + "</small>   \
                                 </div>                                                                                          \
                             </div>                                                                                              \
                         </div>";
