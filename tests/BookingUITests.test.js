@@ -20,6 +20,7 @@ before(async function () {
 
 describe("Testing Booking resource UI", function () {
 
+
   it("Should be able to add and display new resource", async function () {
     const baseUrl = "http://localhost:" + server.address().port + "/booking.html";
     await driver.get(baseUrl);
@@ -62,20 +63,33 @@ describe("Testing Booking resource UI", function () {
     // await rDescElement.click(); // Click on the element
     await rDescElement.sendKeys("11/11/2023");
     // Locate the table element and locate all tr within table
-    const tableBefore = await driver.findElement(By.tagName("table")); // Replace with the actual ID of your table
-    const rowsBefore = await tableBefore.findElements(By.tagName("tr"));
-    const beforeCount = rowsBefore.length;
-
-    console.log("before" + beforeCount)
+    // const tableBefore = await driver.findElement(By.tagName("table")); // Replace with the actual ID of your table
+    // const rowsBefore = await tableBefore.findElements(By.tagName("tr"));
+    // const beforeCount = rowsBefore.length;
+    //console.log("before" + beforeCount)
     // Locate and interact with the Login button
+    console.log("hi")
     const addButtonModal = await driver.findElement(
       By.id(
         "modalAddButton"
       )
     );
     await addButtonModal.click();
+     console.log("hello")
+    // const messageText = await messageElement.getText();
+    // expect(messageText).to.equal( "Added a new Booking at" + jsonData.rest + "!");
 
-    console.log("after")
+  // Wait for the error message to appear
+  const messageElement = await driver.findElement(By.id("message"));
+  const messageText = await messageElement.getText();
+console.log(messageText)
+  // Verify the error message and its style
+  expect(messageText).to.equal( "Added a new Booking at" + jsonData.rest + "!");
+  console.log("after")
+
+const isModalClosed = await isElementNotVisible(driver, By.id("resourceModal"), 5000);
+expect(isModalClosed).to.be.true;
+ 
     // Wait for the modal to dismiss
     // await driver.manage().setTimeouts({ implicit: 5000 });
 
@@ -85,6 +99,7 @@ describe("Testing Booking resource UI", function () {
     console.log(rowsUpdated.length)
     // Assert that the table rows increased by 1
     expect(rowsUpdated.length).to.equal(beforeCount + 1);
+
   });
 
 

@@ -74,7 +74,12 @@ function addBooking() {
       document.getElementById("contact").value = "";
       document.getElementById("people").value = "";
       document.getElementById("book_date").value = "";
-      window.location.href = 'booking.html';
+      
+      setTimeout(function(){
+        window.location.href = 'booking.html';
+    }, 2000);
+     
+     
     } else {
       document.getElementById("message").innerHTML = "Unable to add resource!";
       document.getElementById("message").setAttribute("class", "text-danger");
