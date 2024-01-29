@@ -1,0 +1,36 @@
+<div class="modal fade" id="newReviewModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-center">
+                <h3 class="modal-title text-light">Contribute a Review</h3>
+                <button type="button" class="close bg-light" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body px-5">
+                <!-- All input to be sent to server, and buttons must be within the 'form' tag -->
+                <form id="reviewForm">
+                    <div class="row" text-center id="reviewBody">
+                        <label for="username">Nickname</label>
+                        <input type="text" id="username1" class="form-control" required>
+                        <label for="userComments">Review</label>
+                        <textarea id="userComments" required class="form-control form-rounded" rows="3" cols="100%"></textarea>
+                        <label for="dateOfVisit">Date of visit</label>
+                        <input type="text" id="dateOfVisit" class="form-control" required>
+                        <label for="popcorn">Rating</label id="rating">
+                        <img src="images/popcorn_bw.png" class="pop" value="1" onmouseover="rateIt(this)" />
+                        <img src="images/popcorn_bw.png" class="pop" value="2" onmouseover="rateIt(this)" />
+                        <img src="images/popcorn_bw.png" class="pop" value="3" id="rating3" onmouseover="rateIt(this)" />
+                        <img src="images/popcorn_bw.png" class="pop" value="4" onmouseover="rateIt(this)" />
+                        <img src="images/popcorn_bw.png" class="pop" value="5" onmouseover="rateIt(this)" />
+                    </div>
+
+                    <div class="modal-footer">
+  <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitReview" onClick="addReview()">Submit</button>
+                        <button type="button" class="btn btn-secondary bg-dark" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
