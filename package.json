@@ -11,7 +11,8 @@
       "utils/BookingUtil.js",
       "utils/LoginUtil.js",
       "utils/UserUtil.js",
-      "index.js"
+      "index.js",
+      "public/**/*.js"
     ],
     "exclude": [],
     "reporter": [
@@ -25,7 +26,7 @@
     "statements": 80
   },  
   "scripts": {
-    "test": "nyc mocha tests/RegisterUITests.test.js"
+    "test": "nyc mocha tests/*.test.js"
   },
   "author": "",
   "license": "ISC",
