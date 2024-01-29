@@ -284,10 +284,10 @@ describe("Testing Registration and User Creation", function () {
     const baseUrl =
       "http://localhost:" + server.address().port + "/register.html";
     await driver.get(baseUrl);
-
+  
     // Wait for the registration form to load
     await driver.wait(until.elementLocated(By.id("registerForm")), 10000);
-
+  
     // Fill in registration form with valid data
     await driver.findElement(By.id("first_name")).sendKeys("New");
     await driver.findElement(By.id("last_name")).sendKeys("User");
@@ -303,27 +303,19 @@ describe("Testing Registration and User Creation", function () {
       .findElement(By.id("profile_picture"))
       .sendKeys("http://example.com/newuser.jpg");
     await driver.findElement(By.id("username")).sendKeys("newuser");
-
+  
     // Locate and interact with the register button in the registration form
     const registerButtonInForm = await driver.findElement(
       By.id("registerButton")
     );
     await registerButtonInForm.click();
-
-    // Wait for the success message (adjust the timeout as needed)
+  
     try {
-      // Wait for the alert to appear
-      await driver.wait(until.alertIsPresent(), 10000);
-    
-      // Switch to the alert and accept it (click OK)
-      const alert = await driver.switchTo().alert();
-      await alert.accept();
-    
-      console.log("Alert handled: Registration successful!");
-    
       // Wait for the success message (adjust the timeout as needed)
-      await driver.wait(until.elementLocated(By.id("registerSuccess")), 10000);
-    
+      await driver.wait(until.urlIs("http://localhost:" + server.address().port + "/"), 10000);
+  
+      console.log("Registration successful!");
+  
       // Ensure that the URL is the expected URL
       const currentUrl = await driver.getCurrentUrl();
       expect(currentUrl).to.equal("http://localhost:" + server.address().port);
@@ -331,6 +323,7 @@ describe("Testing Registration and User Creation", function () {
       console.error("Error during registration:", error.message);
     }
   });
+  
 });
 
 after(async function () {
