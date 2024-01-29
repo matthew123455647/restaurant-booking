@@ -23,3 +23,6 @@ node_modules/
 
 # Ignore coverage reports
 coverage/
+
+# Ignore terraform files
+/rms-terraform/.terraform/

@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var logger = require("./logger"); // Import the logger object
 var app = express();
 
 const PORT = process.env.PORT || 5050;
@@ -45,6 +46,8 @@ app.get("/", (req, res) => {
 
 const server = app.listen(PORT, function () {
   console.log(`Demo project at: ${PORT}!`);
+  logger.info(`Demo project at: ${PORT}!`);
+  logger.error(`Example or error log`);
 });
 
 module.exports = { app, server };
