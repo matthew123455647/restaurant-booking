@@ -126,7 +126,7 @@ describe('Testing for show and add review', function () {
     
         // Fill in review details
         const usernameInput = await driver.findElement(By.id('username1'));
-        await usernameInput.sendKeys('George');
+        await usernameInput.sendKeys('John Doe');
     
         const userCommentsInput = await driver.findElement(By.id('userComments'));
         await userCommentsInput.sendKeys('The food is good');
