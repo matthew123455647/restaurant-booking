@@ -79,7 +79,7 @@ describe('Testing for show and add review', function () {
     it('Should show review', async function () {
 
         // Assuming there is a function viewOneRest that shows the modal
-        const restaurantCard = await driver.findElement(By.id('viewclick1')); // Adjust the selector based on your application
+        const restaurantCard = await driver.findElement(By.id('viewclick0')); // Adjust the selector based on your application
         await restaurantCard.click();
 
         // Wait for the modal to appear (replace with appropriate selector and condition)
@@ -155,7 +155,7 @@ describe('Testing for show and add review', function () {
     
         // Assuming you have a modal that closes when the review is submitted
         // Close the restaurants modal
-        const restaurantCard = await driver.findElement(By.id('viewclick1'));
+        const restaurantCard = await driver.findElement(By.id('viewclick0'));
         await restaurantCard.click();
     
         // Wait for the modal to appear
