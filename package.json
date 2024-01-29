@@ -11,8 +11,7 @@
       "utils/BookingUtil.js",
       "utils/LoginUtil.js",
       "utils/UserUtil.js",
-      "index.js",
-      "public/**/*.js"
+      "index.js"
     ],
     "exclude": [],
     "reporter": [
