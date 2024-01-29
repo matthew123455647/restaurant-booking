@@ -1,112 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DVOPS - Resource Management Web App</title>
-    <script src="js/register.js"></script>
+    <title>Chicken Kitchen</title>
     <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       rel="stylesheet"
-      href="register.css"
+      id="bootstrap-css"
     />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/authentication.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 8px;
+      }
+
+      input {
+        padding: 8px;
+        margin-bottom: 16px;
+      }
+
+      input[type="submit"],
+      input[type="button"] {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover,
+      input[type="button"]:hover {
+        background-color: #45a049;
+      }
+    </style>
   </head>
   <body>
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-        <img src="images/logo.png" alt="Company Logo" />
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">
-              <h5>Create an Account</h5>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    placeholder="Email"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    placeholder="Password"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="confirmPassword"
-                    placeholder="Confirm password"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="first_name"
-                    placeholder="First Name"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="last_name"
-                    placeholder="Last Name"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="phone_number"
-                    placeholder="Phone Number"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="url"
-                    class="form-control"
-                    id="profile_picture"
-                    placeholder="Profile Picture URL"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    placeholder="Username"
-                  />
-                </div>
-                <p align="center" id="error" class="text-danger"></p>
-                <p align="center">
-                  <button type="reset" class="btn btn-primary">Reset</button>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="register()"
-                  >
-                    Register
-                  </button>
-                </p>
-                <p align="center">
-                  <a href="login.html">Existing user? Login here</a>
-                </p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="container">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <input type="text" placeholder="First Name" id="first_name" />
+        <input type="text" placeholder="Last Name" id="last_name" />
+        <input type="text" placeholder="Email" id="email_register" />
+        <input type="password" placeholder="Password" id="password_register" />
+        <input type="date" placeholder="Birthday" id="birthday" />
+        <input type="text" placeholder="Phone Number" id="phone_number" />
+        <input
+          type="text"
+          placeholder="Profile Picture URL"
+          id="profile_picture"
+        />
+        <input type="text" placeholder="Username" id="username" />
+        <p align="center" id="registerError" class="text-danger"></p>
+        <input
+          type="button"
+          onclick="register()"
+          value="Register"
+          id="registerButton"
+        />
+
+        <input type="button" value="Back to Login" onclick="backToLogin()" />
+      </form>
     </div>
+
+    <script>
+      function backToLogin() {
+        window.location.href = "authentication.html";
+      }
+    </script>
   </body>
 </html>
