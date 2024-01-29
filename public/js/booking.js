@@ -28,7 +28,7 @@ function viewBookings() {
         response[i].book_date +
         "</td>" +
         "<td>" +
-        '<button type="button" class="btn btn-danger" onclick="deleteBooking(' +
+        '<button type="button" class="btn btn-danger" id="deletebtn" onclick="deleteBooking(' +
         response[i].id +
         ')"> Delete</button>' +
         "</td>" +
@@ -67,13 +67,14 @@ function addBooking() {
     if (response.message == undefined) {
       document.getElementById("message").innerHTML =
         "Added a new Booking at " + jsonData.rest + "!";
-        window.location.href = 'booking.html';
+
       document.getElementById("message").setAttribute("class", "text-success");
       document.getElementById("username").value = "";
       document.getElementById("rest").value = "";
       document.getElementById("contact").value = "";
       document.getElementById("people").value = "";
       document.getElementById("book_date").value = "";
+      window.location.href = 'booking.html';
     } else {
       document.getElementById("message").innerHTML = "Unable to add resource!";
       document.getElementById("message").setAttribute("class", "text-danger");
