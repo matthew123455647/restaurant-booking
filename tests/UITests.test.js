@@ -32,6 +32,7 @@ describe('Testing Chrome browser', function () {
 
 describe('Testing for Search Restaurant', function () {
     it('Should display matching restaurants when searching', async function () {
+        this.timeout(100000);
         const baseUrl = 'http://localhost:' + server.address().port;
 
         await driver.get(baseUrl);
@@ -76,9 +77,6 @@ describe('Testing for Search Restaurant', function () {
 
 describe('Testing for show and add review', function () {
     it('Should show review', async function () {
-        this.timeout(100000);
-        const baseUrl = 'http://localhost:' + server.address().port;
-        await driver.get(baseUrl);
 
         // Assuming there is a function viewOneRest that shows the modal
         const restaurantCard = await driver.findElement(By.id('viewclick0')); // Adjust the selector based on your application
@@ -124,7 +122,7 @@ describe('Testing for show and add review', function () {
   
         const usernameInput = await driver.findElement(By.id('username1'));
         await usernameInput.click();
-        await usernameInput.sendKeys('John Doe');
+        await usernameInput.sendKeys('Yutong');
   
         const userCommentsInput = await driver.findElement(By.id('userComments'));
         await userCommentsInput.click();
@@ -134,7 +132,7 @@ describe('Testing for show and add review', function () {
         await dateOfVisitInput.click();
         await dateOfVisitInput.sendKeys('01/23/2024'); // Assuming MM/DD/YYYY format
   
-        const ratingInput = await driver.findElement(By.id('rating3'));
+        const ratingInput = await driver.findElement(By.id('rating2'));
         await ratingInput.click();
   
         const tableBefore = await driver.findElement(By.tagName('table')); // Replace with the
@@ -153,9 +151,8 @@ describe('Testing for show and add review', function () {
   
         // Assert that the table rows increased by 1
         expect(rowsUpdated.length).to.equal(beforeCount + 1);
-  
+    
         // Additional assertions to validate the content of the added review
-  
     });
 
 });

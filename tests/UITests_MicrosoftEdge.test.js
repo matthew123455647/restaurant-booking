@@ -131,7 +131,7 @@ describe('Testing for show and add review', function () {
 
       const usernameInput = await driver.findElement(By.id('username1'));
       await usernameInput.click();
-      await usernameInput.sendKeys('John Doe');
+      await usernameInput.sendKeys('Sean');
 
       const userCommentsInput = await driver.findElement(By.id('userComments'));
       await userCommentsInput.click();
@@ -141,7 +141,7 @@ describe('Testing for show and add review', function () {
       await dateOfVisitInput.click();
       await dateOfVisitInput.sendKeys('01/23/2024'); // Assuming MM/DD/YYYY format
 
-      const ratingInput = await driver.findElement(By.id('rating3'));
+      const ratingInput = await driver.findElement(By.id('rating2'));
       await ratingInput.click();
 
       const tableBefore = await driver.findElement(By.tagName('table')); // Replace with the
