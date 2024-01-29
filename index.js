@@ -9,6 +9,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
+const statusMonitor = require("express-status-monitor");
+app.use(statusMonitor());
+
 const { viewComment } = require("./utils/CommentUtil");
 const { addComment } = require("./utils/AddCommentUtil");
 const { viewRestaurantByName } = require("./utils/RestaurantUtil");
