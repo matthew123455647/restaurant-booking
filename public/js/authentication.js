@@ -26,7 +26,7 @@ function login() {
         if (response.message == "Login successful!") {
           sessionStorage.setItem("email", jsonData.email);
           alert("User authentication successful!");
-          window.location.href = "index.html";
+          window.location.href = "/";
         } else {
           document.getElementById("loginError").innerHTML =
             "Invalid credentials!";

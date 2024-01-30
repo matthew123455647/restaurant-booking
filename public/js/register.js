@@ -89,14 +89,6 @@ function register() {
   request.send(JSON.stringify(jsonData));
 }
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   var leadToRegisterLabel = document.getElementById("lead-to-register");
-
-//   leadToRegisterLabel.addEventListener("click", function () {
-//     window.location.href = "register.html";
-//   });
-// });
-
 function isValidEmail(email) {
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);

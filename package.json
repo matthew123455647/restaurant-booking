@@ -16,10 +16,10 @@
     ],
     "exclude": [
       "public/**/togglebutton.js",
-      "public/**/search.js" ,
-      "public/**/navbar.js" ,
-      "public/**/restaurant.js" ,
-      "public/**/review.js" 
+      "public/**/search.js",
+      "public/**/navbar.js",
+      "public/**/restaurant.js",
+      "public/**/review.js"
     ],
     "reporter": [
       "text-summary"
@@ -32,8 +32,10 @@
     "statements": 80
   },
   "scripts": {
-    "test": "nyc mocha tests/RegisterUITests.test.js && nyc mocha tests/LoginUITests.test.js && nyc mocha tests/LoginUITests_FireFox.test.js && nyc mocha tests/LoginUITests_MicrosoftEdge.test.js",
-    "start": "node index.js"
+    "test": "nyc mocha tests/*.test.js",
+    "start": "node index.js",
+    "frontend-instrument": "npx nyc instrument .\\public\\js .\\public\\instrumented\\js ",
+    "frontend-report": "npx nyc report --reporter html --reporter text -t coverage-frontend --report-dir coverage-frontend/summary"
   },
   "author": "",
   "license": "ISC",
