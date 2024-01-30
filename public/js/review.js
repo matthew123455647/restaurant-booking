@@ -34,7 +34,7 @@ console.log(restaurant_array[item]._id)
                             <div class="card">                                                                                  \
                                 <div class="card-body">                                                                         \
                                     <p class="card-text" id="rating' + i + '">' + review_array[i].review + "</p>               \
-                                    <small>by " + review_array[i].username + " @ " + review_array[i].timestamp + "</small>   \
+                                    <small>by " + review_array[i].username + " @ " + review_array[i].dateOfVisit + "</small>   \
                                 </div>                                                                                          \
                             </div>                                                                                              \
                         </div>";
@@ -72,14 +72,20 @@ function addReview() {
     review.rating = rating;
 
     console.log(review)
-    
+
     var postReview = new XMLHttpRequest(); // new HttpRequest instance to send comment
 
     postReview.open("POST", "/comment", true);
 
     postReview.setRequestHeader("Content-Type", "application/json");
     postReview.onload = function () {
-        console.log("new review sent");
+        console.log("New review sent");
+
+        // Display an alert message
+        alert("Review has been added successfully!");
+        document.querySelector('.alert').id = 'yourAlertId';
+
+        // After sending the review, fetch updated reviews
         fetchReviews();
     };
 
