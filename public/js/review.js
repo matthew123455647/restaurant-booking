@@ -81,10 +81,7 @@ function addReview() {
     postReview.onload = function () {
         console.log("New review sent");
 
-        // Display an alert message
-        alert("Review has been added successfully!");
-        document.querySelector('.alert').id = 'yourAlertId';
-
+        // Display an alert messag
         // After sending the review, fetch updated reviews
         fetchReviews();
     };
