@@ -64,7 +64,7 @@ describe('Testing for Search Restaurant', function () {
 
     });
 
-
+    
 
     it('Should clear results when search input is cleared', async function () {
         const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
@@ -84,7 +84,7 @@ describe('Testing for show and add review', function () {
     it('Should show review', async function () {
   
       // Assuming there is a function viewOneRest that shows the modal
-      const restaurantCard = await driver.findElement(By.id('viewclick1')); // Adjust the selector based on your application
+      const restaurantCard = await driver.findElement(By.id('viewclick2')); // Adjust the selector based on your application
       await restaurantCard.click();
   
       // Wait for the modal to appear (replace with appropriate selector and condition)
@@ -117,49 +117,51 @@ describe('Testing for show and add review', function () {
       const isDescriptionSectionVisible = await descriptionSection.isDisplayed();
       expect(isDescriptionSectionVisible).to.be.true;
     });
+
+    
   
     it('Should add review', async function () {
-      // Mocking user interactions
-      const addReviewButton = await driver.findElement(By.id('addReview'));
-      await addReviewButton.click();
-  
-      const AddReviewModal = await driver.findElement(By.id('newReviewModal'));
-      await driver.wait(until.elementIsVisible(AddReviewModal), 5000);
-  
-      // Fill in review details
-      const usernameInput = await driver.findElement(By.id('username1'));
-      await usernameInput.sendKeys('John Doe');
-  
-      const userCommentsInput = await driver.findElement(By.id('userComments'));
-      await userCommentsInput.sendKeys('The food is good');
-  
-      const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
-      await dateOfVisitInput.sendKeys('01/23/2024');
-  
-      const ratingInput = await driver.findElement(By.id('rating3'));
-      await ratingInput.click();
-  
-      // Get the count of reviews before submitting
-      const tableBefore = await driver.findElement(By.tagName('table'));
-      const rowsBefore = await tableBefore.findElements(By.tagName('tr'));
-      const beforeCount = rowsBefore.length;
-  
-      // Submit the review
-      const submitReviewButton = await driver.findElement(By.id('submitReview'));
-      await submitReviewButton.click();
-  
-      // Wait for the modal to dismiss
-      await driver.wait(until.stalenessOf(AddReviewModal), 5000);
-  
-      // Get the count of reviews after submitting
-      const tableAfter = await driver.findElement(By.tagName('table'));
-      const rowsAfter = await tableAfter.findElements(By.tagName('tr'));
-      const afterCount = rowsAfter.length;
-  
-      // Assert that the table rows increased by 1
-      expect(afterCount).to.equal(beforeCount + 1);
-  
-      // Additional assertions to validate the content of the added review
+        // Mocking user interactions
+        const addReviewButton = await driver.findElement(By.id('addReview'));
+        await addReviewButton.click();
+
+        const AddReviewModal = await driver.findElement(By.id('newReviewModal'));
+        await driver.wait(until.elementIsVisible(AddReviewModal), 5000);
+
+        // Fill in review details
+        const usernameInput = await driver.findElement(By.id('username1'));
+        await usernameInput.sendKeys('John Doe');
+
+        const userCommentsInput = await driver.findElement(By.id('userComments'));
+        await userCommentsInput.sendKeys('The food is good');
+
+        const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
+        await dateOfVisitInput.sendKeys('01/23/2024');
+
+        const ratingInput = await driver.findElement(By.id('rating3'));
+        await ratingInput.click();
+
+        // Get the count of reviews before submitting
+        const tableBefore = await driver.findElement(By.tagName('table'));
+        const rowsBefore = await tableBefore.findElements(By.tagName('tr'));
+        const beforeCount = rowsBefore.length;
+
+        // Submit the review
+        const submitReviewButton = await driver.findElement(By.id('submitReview'));
+        await submitReviewButton.click();
+
+        // Wait for the modal to dismiss
+        await driver.wait(until.stalenessOf(AddReviewModal), 5000);
+
+        // Get the count of reviews after submitting
+        const tableAfter = await driver.findElement(By.tagName('table'));
+        const rowsAfter = await tableAfter.findElements(By.tagName('tr'));
+        const afterCount = rowsAfter.length;
+
+        // Assert that the table rows increased by 1
+        expect(afterCount).to.equal(beforeCount + 1);
+
+        // Additional assertions to validate the content of the added review
     });
 
     

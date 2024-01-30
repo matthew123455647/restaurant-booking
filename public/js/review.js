@@ -25,8 +25,8 @@ function showRestaurantReviews(item) {
     for (var i = 0; i < review_array.length; i++) {
         if (review_array[i].restaurantName === restaurant_array[item].restaurantName) {
             console.log("found")
-            console.log(review_array[i])
-            console.log(restaurant_array[item]._id)
+console.log(review_array[i])
+console.log(restaurant_array[item]._id)
 
             selectedRestaurant_id = restaurant_array[item]._id;
             star = "";
@@ -34,7 +34,7 @@ function showRestaurantReviews(item) {
                             <div class="card">                                                                                  \
                                 <div class="card-body">                                                                         \
                                     <p class="card-text" id="rating' + i + '">' + review_array[i].review + "</p>               \
-                                    <small>by " + review_array[i].username + " @ " + review_array[i].dateOfVisit + "</small>   \
+                                    <small>by " + review_array[i].username + " @ " + review_array[i].timestamp + "</small>   \
                                 </div>                                                                                          \
                             </div>                                                                                              \
                         </div>";
@@ -52,6 +52,11 @@ function showRestaurantReviews(item) {
     }
 }
 
+function newReview() {
+    //Initialise each HTML input elements in the modal window with default value.
+    rating = 0;
+    document.getElementById("userComments").value = "";
+}
 
 // Submit or send the new comment to the server to be added.
 function addReview() {
@@ -67,17 +72,14 @@ function addReview() {
     review.rating = rating;
 
     console.log(review)
-
+    
     var postReview = new XMLHttpRequest(); // new HttpRequest instance to send comment
 
     postReview.open("POST", "/comment", true);
 
     postReview.setRequestHeader("Content-Type", "application/json");
     postReview.onload = function () {
-        console.log("New review sent");
-
-        // Display an alert messag
-        // After sending the review, fetch updated reviews
+        console.log("new review sent");
         fetchReviews();
     };
 
@@ -104,6 +106,10 @@ function rateIt(element) {
 // the mouse cursor hovers over the popcorn image.
 function changePopcornImage(num, classTarget) {
     switch (eval(num)) {
+        case 1:
+            document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
+            rating = 1;
+            break;
         case 2:
             document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
             document.querySelector(classTarget + "[value='2']").setAttribute("src", "images/popcorn.png");
@@ -112,18 +118,18 @@ function changePopcornImage(num, classTarget) {
         case 3:
             document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
             document.querySelector(classTarget + "[value='2']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='3']").setAttribute("src", "images/popcorn.png");
+            document.querySelector(classTarget + "[value='3']").setAttribute("src","images/popcorn.png");
             rating = 3;
             break;
         
     }
 }
 
-
+//This function will hide the existing modal and present a modal with the selected comment
+//so that the user can attempt to change the username, rating or movie review
+//This function displayS the correct number of colored popcorn
+//based on the movie rating that is given in the user comment
 
 //This function sends the Comment data to the server for updating
 
 //This function deletes the selected comment in a specific movi
-
-
-

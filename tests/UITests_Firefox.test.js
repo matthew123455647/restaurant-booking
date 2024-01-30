@@ -83,7 +83,7 @@ describe('Testing for show and add review', function () {
     it('Should show review', async function () {
 
         // Assuming there is a function viewOneRest that shows the modal
-        const restaurantCard = await driver.findElement(By.id('viewclick1')); // Adjust the selector based on your application
+        const restaurantCard = await driver.findElement(By.id('viewclick0')); // Adjust the selector based on your application
         await restaurantCard.click();
 
         // Wait for the modal to appear (replace with appropriate selector and condition)
@@ -135,7 +135,7 @@ describe('Testing for show and add review', function () {
         const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
         await dateOfVisitInput.sendKeys('01/23/2024');
 
-        const ratingInput = await driver.findElement(By.id('rating2'));
+        const ratingInput = await driver.findElement(By.id('rating1'));
         await ratingInput.click();
 
         // Get the count of reviews before submitting

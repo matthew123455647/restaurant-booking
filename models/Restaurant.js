@@ -7,7 +7,7 @@ class Restaurant {
     image,
     locations,
     contactNo,
-    review
+
   ) {
     this.restaurantName = restaurantName;
     this.description = description;
@@ -16,7 +16,6 @@ class Restaurant {
     this.image = image;
     this.locations = locations;
     this.contactNo = contactNo;
-    this.review = review;
   }
 }
 

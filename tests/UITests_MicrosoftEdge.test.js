@@ -137,7 +137,7 @@ describe('Testing for show and add review', function () {
     const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
     await dateOfVisitInput.sendKeys('01/23/2024');
 
-    const ratingInput = await driver.findElement(By.id('rating3'));
+    const ratingInput = await driver.findElement(By.id('rating2'));
     await ratingInput.click();
 
     // Get the count of reviews before submitting
@@ -161,7 +161,7 @@ describe('Testing for show and add review', function () {
     expect(afterCount).to.equal(beforeCount + 1);
 
     // Additional assertions to validate the content of the added review
-  });
+});
 
 });
 
