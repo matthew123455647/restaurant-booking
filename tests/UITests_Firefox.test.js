@@ -2,6 +2,7 @@ const { app } = require('../index');
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const { describe, it } = require('mocha');
 const { expect } = require('chai');
+const fs = require('fs').promises;
 
 const firefox = require('selenium-webdriver/firefox');
 //const chromeOptions = new chrome.Options();
@@ -10,7 +11,7 @@ const firefox = require('selenium-webdriver/firefox');
 const driver = new Builder().forBrowser('firefox').setEdgeOptions(new firefox.Options()).build();
 
 driver.manage().window().maximize();
-
+var counter = 0;
 var server;
 
 before(async function () {
@@ -36,7 +37,7 @@ describe('Testing Firefox browser', function () {
 describe('Testing for Search Restaurant', function () {
     it('Should display matching restaurants when searching', async function () {
         this.timeout(100000);
-        const baseUrl = 'http://localhost:' + server.address().port;
+        const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
 
         await driver.get(baseUrl);
 
@@ -66,7 +67,7 @@ describe('Testing for Search Restaurant', function () {
 
 
     it('Should clear results when search input is cleared', async function () {
-        const baseUrl = 'http://localhost:' + server.address().port;
+        const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
         await driver.get(baseUrl);
 
         // Assuming the search input has the id "searchInput"
@@ -120,46 +121,62 @@ describe('Testing for show and add review', function () {
         // Mocking user interactions
         const addReviewButton = await driver.findElement(By.id('addReview'));
         await addReviewButton.click();
-    
+
         const AddReviewModal = await driver.findElement(By.id('newReviewModal'));
         await driver.wait(until.elementIsVisible(AddReviewModal), 5000);
-    
+
         // Fill in review details
         const usernameInput = await driver.findElement(By.id('username1'));
         await usernameInput.sendKeys('John Doe');
-    
+
         const userCommentsInput = await driver.findElement(By.id('userComments'));
         await userCommentsInput.sendKeys('The food is good');
-    
+
         const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
         await dateOfVisitInput.sendKeys('01/23/2024');
-    
+
         const ratingInput = await driver.findElement(By.id('rating2'));
         await ratingInput.click();
-    
+
         // Get the count of reviews before submitting
         const tableBefore = await driver.findElement(By.tagName('table'));
         const rowsBefore = await tableBefore.findElements(By.tagName('tr'));
         const beforeCount = rowsBefore.length;
-    
+
         // Submit the review
         const submitReviewButton = await driver.findElement(By.id('submitReview'));
         await submitReviewButton.click();
-    
+
         // Wait for the modal to dismiss
         await driver.wait(until.stalenessOf(AddReviewModal), 5000);
-    
+
         // Get the count of reviews after submitting
         const tableAfter = await driver.findElement(By.tagName('table'));
         const rowsAfter = await tableAfter.findElements(By.tagName('tr'));
         const afterCount = rowsAfter.length;
-    
+
         // Assert that the table rows increased by 1
         expect(afterCount).to.equal(beforeCount + 1);
-    
+
         // Additional assertions to validate the content of the added review
     });
 
+});
+
+afterEach(async function () {
+    await driver.executeScript('return window.__coverage__;').then(async (coverageData) => {
+        if (coverageData) {
+            // Save coverage data to a file
+            await fs.writeFile('coverage-frontend/coverage' + counter++ + '.json',
+                JSON.stringify(coverageData), (err) => {
+                    if (err) {
+                        console.error('Error writing coverage data:', err);
+                    } else {
+                        console.log('Coverage data written to coverage.json');
+                    }
+                });
+        }
+    });
 });
 
 
