@@ -146,12 +146,7 @@ function changePopcornImage(num, classTarget) {
 }
 
 
-//This function will hide the existing modal and present a modal with the selected comment
-//so that the user can attempt to change the username, rating or movie review
 
-
-//This function displayS the correct number of colored popcorn
-//based on the movie rating that is given in the user comment
 function displayColorPopcorn(classname, num) {
     var pop = document.getElementsByClassName(classname);
     var classTarget = "." + classname;
