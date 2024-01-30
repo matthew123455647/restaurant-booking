@@ -62,7 +62,7 @@ describe('Testing for Search Restaurant', function () {
 
     });
 
-
+    
 
     it('Should clear results when search input is cleared', async function () {
         const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
@@ -119,59 +119,46 @@ describe('Testing for show and add review', function () {
         // Mocking user interactions
         const addReviewButton = await driver.findElement(By.id('addReview'));
         await addReviewButton.click();
-
-        // Wait for the new review modal to be visible
-        const newReviewModal = await driver.findElement(By.id('newReviewModal'));
-        await driver.wait(until.elementIsVisible(newReviewModal), 5000);
-
-        // Fill in the review details
+        const AddReviewModal = await driver.findElement(By.id('newReviewModal'));
+        await driver.wait(until.elementIsVisible(AddReviewModal), 5000);
+    
         const usernameInput = await driver.findElement(By.id('username1'));
+        await usernameInput.click();
         await usernameInput.sendKeys('John Doe');
-
+    
         const userCommentsInput = await driver.findElement(By.id('userComments'));
+        await userCommentsInput.click();
         await userCommentsInput.sendKeys('The food is good');
-
+    
         const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
-        await dateOfVisitInput.sendKeys('11/23/2024');
-
-        const ratingInput = await driver.findElement(By.id('rating4'));
+        await dateOfVisitInput.click();
+        await dateOfVisitInput.sendKeys('01/23/2024'); // Assuming MM/DD/YYYY format
+    
+        const ratingInput = await driver.findElement(By.id('rating2'));
         await ratingInput.click();
-
-        // Capture the number of rows in the reviews table before submitting the review
-
-        // Click on the submit button to add the review
-        const submitReviewButton = await driver.findElement(By.id('submitReview'));
-        await submitReviewButton.click();
-
-        const alert = await driver.wait(until.elementLocated(By.css('.alert')), 5000);
-
-        // Get the text from the alert
-        const alertText = await alert.getText();
-
-        // Now you can assert or log the alert text as needed
-        console.log('Alert Text:', alertText);
-
-        // Assuming you have imported assert from an assertion library
-        assert.equal(alertText, 'Review has been added successfully!');
-
-        // Optionally, you can perform further actions or verifications based on the alert or its associated DOM element
-        // For example, you mentioned assigning an id to the alert element
-        const alertElement = await driver.findElement(By.css('.alert'));
-        const alertElementId = await alertElement.getAttribute('id');
-        console.log('Alert Element ID:', alertElementId);
-
-
-        // Close the alert
-
-
-
-
-        // Wait for the new review modal to dismiss  
+    
+        const tableBefore = await driver.findElement(By.tagName('table')); // Replace with the
+        const rowsBefore = await tableBefore.findElements(By.tagName('tr'));
+        const beforeCount = rowsBefore.length
+    
+        const newReviewModal = await driver.findElement(By.id('submitReview'));
+        await newReviewModal.click();
+    
+        // Wait for the modal to dismiss (if applicable)
+        await driver.wait(until.stalenessOf(newReviewModal), 5000);
+    
+        // Assuming you have a table with reviews and each review is represented by a tr element
+        const tableUpdated = await driver.findElement(By.tagName('table'));
+        const rowsUpdated = await tableUpdated.findElements(By.tagName('tr'));
+    
+        // Assert that the table rows increased by 1
+        expect(rowsUpdated.length).to.equal(beforeCount + 1);
+    
         // Additional assertions to validate the content of the added review
-        // For example, assert the username, comments, date, and rating.
+    
+      });
+    
     });
-
-});
 
 afterEach(async function () {
     await driver.executeScript('return window.__coverage__;').then(async (coverageData) => {
