@@ -52,11 +52,6 @@ function showRestaurantReviews(item) {
     }
 }
 
-function newReview() {
-    //Initialise each HTML input elements in the modal window with default value.
-    rating = 0;
-    document.getElementById("userComments").value = "";
-}
 
 // Submit or send the new comment to the server to be added.
 function addReview() {
@@ -109,10 +104,6 @@ function rateIt(element) {
 // the mouse cursor hovers over the popcorn image.
 function changePopcornImage(num, classTarget) {
     switch (eval(num)) {
-        case 1:
-            document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
-            rating = 1;
-            break;
         case 2:
             document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
             document.querySelector(classTarget + "[value='2']").setAttribute("src", "images/popcorn.png");
@@ -124,34 +115,12 @@ function changePopcornImage(num, classTarget) {
             document.querySelector(classTarget + "[value='3']").setAttribute("src", "images/popcorn.png");
             rating = 3;
             break;
-        case 4:
-            document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='2']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='3']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='4']").setAttribute("src", "images/popcorn.png");
-            rating = 4;
-            break;
-        case 5:
-            document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='2']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='3']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='4']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='5']").setAttribute("src", "images/popcorn.png");
-            rating = 5;
-            break;
+        
     }
 }
 
 
 
-function displayColorPopcorn(classname, num) {
-    var pop = document.getElementsByClassName(classname);
-    var classTarget = "." + classname;
-    for (let p of pop) {
-        p.setAttribute("src", popcornBWImage);
-    }
-    changePopcornImage(num, classTarget);
-}
 //This function sends the Comment data to the server for updating
 
 //This function deletes the selected comment in a specific movi

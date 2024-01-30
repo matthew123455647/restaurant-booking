@@ -76,34 +76,5 @@ function viewOneRest(data) {
 
 
 
-function getRestaurantsByName(restaurantName) {
-    //var restaurantName = JSON.parse(sessionStorage.getItem("restaurant"));
-    var request = new XMLHttpRequest();
-    console.log("xxxxx" + restaurantName);
-    request.open("GET", "/restaurant/" + restaurantName, true);
-  
-  
-    request.onload = function () {
-      if (request.status === 200) {
-        var response = JSON.parse(request.responseText);
-        console.log(response)
-        
-          document.getElementById("restaurantName").innerHTML = response.restaurantName;
-          document.getElementById("description").innerHTML = response.description;
-          document.getElementById("operatingHours").innerHTML = response.operatingHours;
-          document.getElementById("rating").innerHTML = response.rating;
-          document.getElementById("image").innerHTML = response.image;
-          document.getElementById("rating").innerHTML = response.rating;
-          document.getElementById("locations").innerHTML = response.locations;
-          document.getElementById("contactNo").innerHTML = response.contactNo;
-          document.getElementById("review").innerHTML = response.review;
-         
-          
-          
-      
-      }
-    };
-  
-    request.send();
-  }
+
 
