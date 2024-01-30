@@ -12,7 +12,9 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/register.js"></script>
+    <script src="js/authentication.js"></script>
+  </head>
+  <body>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -58,39 +60,23 @@
         background-color: #45a049;
       }
     </style>
-  </head>
-  <body>
+    <!------ Include the above in your HEAD tag ---------->
+
     <div class="container">
-      <h2>Register</h2>
-      <form id="registerForm">
-        <input type="text" placeholder="First Name" id="first_name" />
-        <input type="text" placeholder="Last Name" id="last_name" />
-        <input type="text" placeholder="Email" id="email_register" />
-        <input type="password" placeholder="Password" id="password_register" />
-        <input type="date" placeholder="Birthday" id="birthday" />
-        <input type="text" placeholder="Phone Number" id="phone_number" />
-        <input
-          type="text"
-          placeholder="Profile Picture URL"
-          id="profile_picture"
-        />
-        <input type="text" placeholder="Username" id="username" />
-        <p align="center" id="registerError" class="text-danger"></p>
+      <h2>LOGIN</h2>
+      <form id="loginForm">
+        <input type="text" placeholder="Email" id="email" />
+        <input type="password" placeholder="Password" id="password" />
+        <a href="#">Forgot password?</a>
+        <p align="center" id="loginError" class="text-danger"></p>
+        <input type="button" onclick="login()" value="Login" id="loginButton" />
         <input
           type="button"
-          onclick="register()"
-          value="Register"
-          id="registerButton"
+          value="Go Register!!!"
+          onclick="backToRegister()"
+          id="lead-to-register"
         />
-
-        <input type="button" value="Back to Login" onclick="backToLogin()" />
       </form>
     </div>
-
-    <script>
-      function backToLogin() {
-        window.location.href = "authentication.html";
-      }
-    </script>
   </body>
 </html>

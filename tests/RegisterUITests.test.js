@@ -2,7 +2,7 @@ const { app } = require("../index");
 const { Builder, By, Key, until } = require("selenium-webdriver");
 const { describe, it, before, after } = require("mocha");
 const { expect } = require("chai");
-
+const fs = require("fs").promises;
 const chrome = require("selenium-webdriver/chrome");
 const chromeOptions = new chrome.Options();
 const driver = new Builder()
@@ -11,7 +11,7 @@ const driver = new Builder()
   .build();
 
 var server;
-
+var counter = 0;
 before(async function () {
   server = await new Promise((resolve) => {
     server = app.listen(0, "localhost", () => {
@@ -22,14 +22,17 @@ before(async function () {
 
 describe("Testing Registration UI", function () {
   it("Should have the correct title", async function () {
-    const baseUrl = "http://localhost:" + server.address().port;
+    const baseUrl =
+      "http://localhost:" + server.address().port + "/instrumented";
     this.timeout(100000);
     await driver.get(baseUrl);
   });
 
   it("Should show error message - All fields required", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
 
     // Wait for the entire page to be loaded
@@ -54,7 +57,9 @@ describe("Testing Registration UI", function () {
 
   it("Should show error message - Invalid email format", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
 
     // Wait for the registration form to load
@@ -89,7 +94,9 @@ describe("Testing Registration UI", function () {
 
   it("Should show error message - Invalid password format", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
 
     // Wait for the registration form to load (adjust the timeout as needed)
@@ -128,7 +135,9 @@ describe("Testing Registration UI", function () {
 
   it("Should show error message - Invalid date of birth format", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
 
     // Wait for the registration form to load (adjust the timeout as needed)
@@ -167,7 +176,9 @@ describe("Testing Registration UI", function () {
 
   it("Should show error message - Invalid Phone Number", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
 
     // Wait for the registration form to load (adjust the timeout as needed)
@@ -204,7 +215,9 @@ describe("Testing Registration UI", function () {
 
   it("Should show error message - Invalid URL", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
 
     // Wait for the registration form to load (adjust the timeout as needed)
@@ -239,7 +252,9 @@ describe("Testing Registration UI", function () {
 
   it("Should show error message - Invalid Username", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
 
     // Wait for the entire page to be loaded
@@ -282,12 +297,14 @@ describe("Testing Registration UI", function () {
 describe("Testing Registration and User Creation", function () {
   it("Should register a new user successfully", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/register.html";
+      "http://localhost:" +
+      server.address().port +
+      "/instrumented/register.html";
     await driver.get(baseUrl);
-  
+
     // Wait for the registration form to load
     await driver.wait(until.elementLocated(By.id("registerForm")), 10000);
-  
+
     // Fill in registration form with valid data
     await driver.findElement(By.id("first_name")).sendKeys("New");
     await driver.findElement(By.id("last_name")).sendKeys("User");
@@ -303,19 +320,24 @@ describe("Testing Registration and User Creation", function () {
       .findElement(By.id("profile_picture"))
       .sendKeys("http://example.com/newuser.jpg");
     await driver.findElement(By.id("username")).sendKeys("newuser");
-  
+
     // Locate and interact with the register button in the registration form
     const registerButtonInForm = await driver.findElement(
       By.id("registerButton")
     );
     await registerButtonInForm.click();
-  
+
     try {
       // Wait for the success message (adjust the timeout as needed)
-      await driver.wait(until.urlIs("http://localhost:" + server.address().port + "/"), 10000);
-  
+      await driver.wait(
+        until.urlIs(
+          "http://localhost:" + server.address().port + "/instrumented/"
+        ),
+        10000
+      );
+
       console.log("Registration successful!");
-  
+
       // Ensure that the URL is the expected URL
       const currentUrl = await driver.getCurrentUrl();
       expect(currentUrl).to.equal("http://localhost:" + server.address().port);
@@ -323,7 +345,27 @@ describe("Testing Registration and User Creation", function () {
       console.error("Error during registration:", error.message);
     }
   });
-  
+});
+
+afterEach(async function () {
+  await driver
+    .executeScript("return window.__coverage__;")
+    .then(async (coverageData) => {
+      if (coverageData) {
+        // Save coverage data to a file
+        await fs.writeFile(
+          "coverage-frontend/coverage" + counter++ + ".json",
+          JSON.stringify(coverageData),
+          (err) => {
+            if (err) {
+              console.error("Error writing coverage data:", err);
+            } else {
+              console.log("Coverage data written to coverage.json");
+            }
+          }
+        );
+      }
+    });
 });
 
 after(async function () {

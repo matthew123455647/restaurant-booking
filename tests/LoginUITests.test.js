@@ -2,7 +2,7 @@ const { app } = require("../index");
 const { Builder, By, Key, until } = require("selenium-webdriver");
 const { describe, it } = require("mocha");
 const { expect } = require("chai");
-
+const fs = require('fs').promises;
 const chrome = require("selenium-webdriver/chrome");
 const chromeOptions = new chrome.Options();
 // chromeOptions.addArguments("--headless");
@@ -12,7 +12,7 @@ const driver = new Builder()
   .build();
 
 var server;
-
+var counter = 0;
 before(async function () {
   server = await new Promise((resolve) => {
     server = app.listen(0, "localhost", () => {
@@ -23,14 +23,14 @@ before(async function () {
 
 describe("Testing Resource UI", function () {
   it("Should have the correct title", async function () {
-    const baseUrl = "http://localhost:" + server.address().port;
+    const baseUrl = "http://localhost:" + server.address().port + '/instrumented';
     this.timeout(100000);
     await driver.get(baseUrl);
   });
 
   it("Should show error message - All fields required", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
     // Locate and interact with the email field
     const emailElement = await driver.findElement(By.id("email"));
@@ -50,7 +50,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Invalid credentials", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
     // Locate and interact with the email field
     const emailElement = await driver.findElement(By.id("email"));
@@ -85,7 +85,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Empty Email and Password", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the Login button without entering email and password
@@ -102,7 +102,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Empty Email", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the password field
@@ -125,7 +125,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Empty Password", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the email field
@@ -148,7 +148,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Invalid Email Format", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the email field
@@ -176,7 +176,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Invalid email and password format", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the email field
@@ -203,7 +203,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Incorrect Password", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the email field
@@ -231,7 +231,7 @@ describe("Testing Resource UI", function () {
 
   it("Should show error message - Nonexistent Email", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the email field
@@ -259,7 +259,7 @@ describe("Testing Resource UI", function () {
 
   it("Should log in successfully", async function () {
     const baseUrl =
-      "http://localhost:" + server.address().port + "/authentication.html";
+      "http://localhost:" + server.address().port + "/instrumented/authentication.html";
     await driver.get(baseUrl);
 
     // Locate and interact with the email field
@@ -293,17 +293,33 @@ describe("Testing Resource UI", function () {
 
     // Wait for the login to complete (adjust the timeout as needed)
     await driver.wait(
-      until.urlIs("http://localhost:" + server.address().port + "/index.html"),
+      until.urlIs("http://localhost:" + server.address().port + "/instrumented/index.html"),
       5000
     );
 
     // Verify that the user is redirected to the correct page
     const currentUrl = await driver.getCurrentUrl();
     expect(currentUrl).to.equal(
-      "http://localhost:" + server.address().port + "/index.html"
+      "http://localhost:" + server.address().port + "/instrumented/index.html"
     );
   });
 });
+
+afterEach(async function () {
+  await driver.executeScript('return window.__coverage__;').then(async (coverageData) => {
+  if (coverageData) {
+  // Save coverage data to a file
+  await fs.writeFile('coverage-frontend/coverage'+ counter++ + '.json',
+  JSON.stringify(coverageData), (err) => {
+  if (err) {
+  console.error('Error writing coverage data:', err);
+  } else {
+  console.log('Coverage data written to coverage.json');
+  }
+  });
+  }
+  });
+  });
 
 after(async function () {
   // await driver.quit();
