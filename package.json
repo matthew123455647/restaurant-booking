@@ -12,7 +12,8 @@
       "utils/DeleteBookingUtil.js",
       "utils/ViewBookingUtil.js",
       "utils/LoginUtil.js",
-      "utils/UserUtil.js"
+      "utils/UserUtil.js",
+      "index.js"
     ],
     "exclude": [],
     "reporter": [
