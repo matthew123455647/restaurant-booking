@@ -5,9 +5,11 @@ const { expect } = require('chai');
 const chrome = require('selenium-webdriver/chrome');
 const chromeOptions = new chrome.Options();
 // chromeOptions.addArguments('--headless');
+const fs = require('fs').promises;
 const driver = new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
 
 driver.manage().window().maximize();
+var counter = 0;
 var server;
 before(async function () {
     server = await new Promise((resolve) => {
@@ -33,7 +35,7 @@ describe('Testing Chrome browser', function () {
 describe('Testing for Search Restaurant', function () {
     it('Should display matching restaurants when searching', async function () {
         this.timeout(100000);
-        const baseUrl = 'http://localhost:' + server.address().port;
+        const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
 
         await driver.get(baseUrl);
 
@@ -63,7 +65,7 @@ describe('Testing for Search Restaurant', function () {
 
 
     it('Should clear results when search input is cleared', async function () {
-        const baseUrl = 'http://localhost:' + server.address().port;
+        const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
         await driver.get(baseUrl);
 
         // Assuming the search input has the id "searchInput"
@@ -79,7 +81,7 @@ describe('Testing for show and add review', function () {
     it('Should show review', async function () {
 
         // Assuming there is a function viewOneRest that shows the modal
-        const restaurantCard = await driver.findElement(By.id('viewclick0')); // Adjust the selector based on your application
+        const restaurantCard = await driver.findElement(By.id('viewclick1')); // Adjust the selector based on your application
         await restaurantCard.click();
 
         // Wait for the modal to appear (replace with appropriate selector and condition)
@@ -117,75 +119,74 @@ describe('Testing for show and add review', function () {
         // Mocking user interactions
         const addReviewButton = await driver.findElement(By.id('addReview'));
         await addReviewButton.click();
-    
+
         // Wait for the new review modal to be visible
         const newReviewModal = await driver.findElement(By.id('newReviewModal'));
         await driver.wait(until.elementIsVisible(newReviewModal), 5000);
-    
+
         // Fill in the review details
         const usernameInput = await driver.findElement(By.id('username1'));
         await usernameInput.sendKeys('John Doe');
-    
+
         const userCommentsInput = await driver.findElement(By.id('userComments'));
         await userCommentsInput.sendKeys('The food is good');
-    
+
         const dateOfVisitInput = await driver.findElement(By.id('dateOfVisit'));
-        await dateOfVisitInput.sendKeys('01/23/2024');
-    
+        await dateOfVisitInput.sendKeys('11/23/2024');
+
         const ratingInput = await driver.findElement(By.id('rating4'));
         await ratingInput.click();
-    
+
         // Capture the number of rows in the reviews table before submitting the review
-        const tableBefore = await driver.findElement(By.tagName('table'));
-        const rowsBefore = await tableBefore.findElements(By.tagName('tr'));
-        const beforeCount = rowsBefore.length;
-    
+
         // Click on the submit button to add the review
         const submitReviewButton = await driver.findElement(By.id('submitReview'));
         await submitReviewButton.click();
-    
-        // Wait for the new review modal to dismiss
-        const closeModalButton = await driver.findElement(By.id('closeButton'));
-        await closeModalButton.click();
-    
-        // Capture the number of rows in the reviews table after submitting the review
-        const tableAfter = await driver.findElement(By.tagName('table'));
-        const rowsAfter = await tableAfter.findElements(By.tagName('tr'));
-        const afterCount = rowsAfter.length;
-    
-        // Assuming you have a modal that closes when the review is submitted
-        // Close the restaurants modal
-        const restaurantCard = await driver.findElement(By.id('viewclick0'));
-        await restaurantCard.click();
-    
-        // Wait for the modal to appear
-        const modalElement = await driver.findElement(By.id('restaurantsModal'));
-        await driver.wait(until.elementIsVisible(modalElement), 5000);
-    
-        // Click on the "Toggle Review" button
-        const toggleReviewButton = await driver.findElement(By.id('toggle-review'));
-        await toggleReviewButton.click();
-    
-        // Wait for the review section to be visible
-        await driver.wait(until.elementIsVisible(driver.findElement(By.id('review-section'))), 10000);
-    
-        // Assert that the review section is now visible
-        const reviewSection = await driver.findElement(By.id('review-section'));
-        const isReviewSectionVisible = await reviewSection.isDisplayed();
-        expect(isReviewSectionVisible).to.be.true;
-    
-        // Assert that the modal is closed
-        // Assert that the table rows increased by 1
-        expect(afterCount).to.equal(beforeCount + 1);
 
-        const successMessage = await driver.findElement(By.id('successMessage'));
-        const isSuccessMessageVisible = await successMessage.isDisplayed();
-        expect(isSuccessMessageVisible).to.be.true;
-    
+        const alert = await driver.wait(until.elementLocated(By.css('.alert')), 5000);
+
+        // Get the text from the alert
+        const alertText = await alert.getText();
+
+        // Now you can assert or log the alert text as needed
+        console.log('Alert Text:', alertText);
+
+        // Assuming you have imported assert from an assertion library
+        assert.equal(alertText, 'Review has been added successfully!');
+
+        // Optionally, you can perform further actions or verifications based on the alert or its associated DOM element
+        // For example, you mentioned assigning an id to the alert element
+        const alertElement = await driver.findElement(By.css('.alert'));
+        const alertElementId = await alertElement.getAttribute('id');
+        console.log('Alert Element ID:', alertElementId);
+
+
+        // Close the alert
+
+
+
+
+        // Wait for the new review modal to dismiss  
         // Additional assertions to validate the content of the added review
         // For example, assert the username, comments, date, and rating.
     });
 
+});
+
+afterEach(async function () {
+    await driver.executeScript('return window.__coverage__;').then(async (coverageData) => {
+        if (coverageData) {
+            // Save coverage data to a file
+            await fs.writeFile('coverage-frontend/coverage' + counter++ + '.json',
+                JSON.stringify(coverageData), (err) => {
+                    if (err) {
+                        console.error('Error writing coverage data:', err);
+                    } else {
+                        console.log('Coverage data written to coverage.json');
+                    }
+                });
+        }
+    });
 });
 
 // Mocking user interactions

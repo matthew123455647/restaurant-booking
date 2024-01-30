@@ -25,8 +25,8 @@ function showRestaurantReviews(item) {
     for (var i = 0; i < review_array.length; i++) {
         if (review_array[i].restaurantName === restaurant_array[item].restaurantName) {
             console.log("found")
-console.log(review_array[i])
-console.log(restaurant_array[item]._id)
+            console.log(review_array[i])
+            console.log(restaurant_array[item]._id)
 
             selectedRestaurant_id = restaurant_array[item]._id;
             star = "";
@@ -72,14 +72,20 @@ function addReview() {
     review.rating = rating;
 
     console.log(review)
-    
+
     var postReview = new XMLHttpRequest(); // new HttpRequest instance to send comment
 
     postReview.open("POST", "/comment", true);
 
     postReview.setRequestHeader("Content-Type", "application/json");
     postReview.onload = function () {
-        console.log("new review sent");
+        console.log("New review sent");
+
+        // Display an alert message
+        alert("Review has been added successfully!");
+        document.querySelector('.alert').id = 'yourAlertId';
+
+        // After sending the review, fetch updated reviews
         fetchReviews();
     };
 
@@ -118,7 +124,7 @@ function changePopcornImage(num, classTarget) {
         case 3:
             document.querySelector(classTarget + "[value='1']").setAttribute("src", "images/popcorn.png");
             document.querySelector(classTarget + "[value='2']").setAttribute("src", "images/popcorn.png");
-            document.querySelector(classTarget + "[value='3']").setAttribute("src","images/popcorn.png");
+            document.querySelector(classTarget + "[value='3']").setAttribute("src", "images/popcorn.png");
             rating = 3;
             break;
         case 4:
