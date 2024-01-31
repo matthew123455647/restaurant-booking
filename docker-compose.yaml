@@ -1,8 +1,20 @@
 version: '3'
 services: 
-  build-rms: 
+  build-ziyuu: 
     build: 
       context: .
-      dockerfile: DockerFile
-    image: matthew123455647/rms-docker-img:latest
+      dockerfile: DockerfileZiyuu
+    image: uyizzz/book-docker-img:v1
+    container_name: booking-docker-container
+  build-jerlyn: 
+    build: 
+      context: .
+      dockerfile: Dockerfile 
+    image: jerlyn/book-docker-img:v1
+    container_name: rms-docker-container
+  build-matthew: 
+    build: 
+      context: .
+      dockerfile: Dockerfile 
+    image: matthew/book-docker-img:v1
     container_name: rms-docker-container
