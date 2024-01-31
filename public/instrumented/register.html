@@ -11,53 +11,8 @@
     />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/register.css" />
     <script src="js/register.js"></script>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-      }
-
-      .container {
-        max-width: 400px;
-        margin: 50px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      h2 {
-        text-align: center;
-      }
-
-      form {
-        display: flex;
-        flex-direction: column;
-      }
-
-      label {
-        margin-bottom: 8px;
-      }
-
-      input {
-        padding: 8px;
-        margin-bottom: 16px;
-      }
-
-      input[type="submit"],
-      input[type="button"] {
-        background-color: #4caf50;
-        color: #fff;
-        cursor: pointer;
-      }
-
-      input[type="submit"]:hover,
-      input[type="button"]:hover {
-        background-color: #45a049;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -83,7 +38,12 @@
           id="registerButton"
         />
 
-        <input type="button" value="Back to Login" onclick="backToLogin()" />
+        <input
+          type="button"
+          value="Back to Login"
+          onclick="backToLogin()"
+          id="back-to-login"
+        />
       </form>
     </div>
 

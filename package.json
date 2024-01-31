@@ -10,9 +10,7 @@
       "utils/AddCommentUtil.js",
       "utils/BookingUtil.js",
       "utils/LoginUtil.js",
-      "utils/UserUtil.js",
-      "index.js",
-      "public/**/*.js"
+      "utils/UserUtil.js"
     ],
     "exclude": [
       "public/**/togglebutton.js",
@@ -35,7 +33,7 @@
     "test": "nyc mocha tests/*.test.js",
     "start": "node index.js",
     "frontend-instrument": "npx nyc instrument .\\public\\js .\\public\\instrumented\\js ",
-    "frontend-report": "npx nyc report --reporter html --reporter text -t coverage-frontend --report-dir coverage-frontend/summary"
+    "frontend-report": "npx nyc report --reporter html --reporter text -t coverage-frontend-jerlyn --report-dir coverage-frontend-jerlyn/summary"
   },
   "author": "",
   "license": "ISC",

@@ -354,7 +354,7 @@ afterEach(async function () {
       if (coverageData) {
         // Save coverage data to a file
         await fs.writeFile(
-          "coverage-frontend/coverage" + counter++ + ".json",
+          "coverage-frontend-jerlyn/coverage" + counter++ + ".json",
           JSON.stringify(coverageData),
           (err) => {
             if (err) {
