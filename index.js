@@ -9,6 +9,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
+
+
 const { viewComment } = require("./utils/CommentUtil");
 const { addComment } = require("./utils/AddCommentUtil");
 const { viewRestaurant  } = require('./utils/RestaurantUtil');
