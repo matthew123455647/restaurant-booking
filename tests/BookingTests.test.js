@@ -59,8 +59,6 @@ describe("Testing booking related features", () => {
     await addBooking(req, res);
   });
 
-  
-
   it("Should return an array when viewing booking data", async () => {
     const req = {};
     const res = {
@@ -75,22 +73,38 @@ describe("Testing booking related features", () => {
     await viewBooking(req, res);
   });
 
-  it("Should delete a booking successfully", async () => {
-    const req = "1700899006177848";
-
-    const res = {
-      status: function (code) {
-        expect(code).to.equal(204);
-        return this;
+  it("Should delete a Booking successfully", async () => {
+    const req = {
+      params: {
+        id: orgContent[0].id,
       },
     };
-
-    try {
-      await deleteBooking(req, res);
-    } catch (error) {
-      console.error(error);
-      // Handle errors (e.g., log, rethrow, etc.)
-    }
+    const res = {
+      status: function (code) {
+        expect(code).to.equal(201);
+        return this;
+      },
+      json: function (data) {
+        expect(data.message).to.equal("Resource deleted successfully!");
+      },
+    };
+    await deleteBooking(req, res);
   });
-
+  it("Should not be able to delete resource due to invalid id", async () => {
+    const req = {
+      params: {
+        id: "ABCDEFG",
+      },
+    };
+    const res = {
+      status: function (code) {
+        expect(code).to.equal(500);
+        return this;
+      },
+      json: function (data) {
+        expect(data.message).to.equal("Error occurred, unable to delete!");
+      },
+    };
+    await deleteBooking(req, res);
+  });
 });

@@ -8,14 +8,17 @@
       "utils/RestaurantUtil.js",
       "utils/CommentUtil.js",
       "utils/AddCommentUtil.js",
-      "utils/BookingUtil.js",
+      "utils/AddBookingUtil.js",
+      "utils/DeleteBookingUtil.js",
+      "utils/ViewBookingUtil.js",
       "utils/LoginUtil.js",
       "utils/UserUtil.js",
       "index.js"
     ],
     "exclude": [],
     "reporter": [
-      "text-summary"
+      "text-summary",
+      "html"
     ],
     "all": true,
     "check-coverage": true,
@@ -32,7 +35,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "chai": "^4.3.10",
+    "chai": "^4.4.1",
     "chai-as-promised": "^7.1.1",
     "chai-http": "^4.4.0",
     "chromedriver": "^120.0.2",

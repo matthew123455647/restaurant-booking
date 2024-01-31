@@ -31,7 +31,7 @@
                         <a class="nav-link mx-2 text-uppercase active" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2 text-uppercase active" href="booking.html">Booking</a>
+                        <a class="nav-link mx-2 text-uppercase active" id="bookpage" href="booking.html">Booking</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2 text-uppercase" aria-current="page" href="offer.html">Offers</a>
@@ -53,7 +53,7 @@
 <div class="col-md-10">
 </div>
 <div class="col-md-2">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resourceModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" id="addBookingButton" data-target="#resourceModal">
 Add Booking
 </button>
 </div>
@@ -117,8 +117,8 @@ placeholder="Enter contact">
 </form>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<button type="button" class="btn btn-primary" onclick="addBooking()">Add Booking</button>
+<button type="button" class="btn btn-secondary" id="modalCloseButton" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary" id="modalAddButton" onclick="addBooking()">Add Booking</button>
 </div>
 </div>
 </div>
