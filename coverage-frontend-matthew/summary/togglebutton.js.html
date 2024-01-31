@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for search.js</title>
+    <title>Code coverage report for togglebutton.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> search.js</h1>
+        <h1><a href="index.html">All files</a> togglebutton.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/17</span>
+                <span class='fraction'>14/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>14/15</span>
             </div>
         
             
@@ -89,72 +89,66 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">76x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">38x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">document.getElementById("searchInput").addEventListener("input", function (event) {
-  event.preventDefault();
-  var input = document.getElementById("searchInput").value.toLowerCase();
-  console.log(input);
-  var table = document.getElementById("restaurants-details");
-  table.innerHTML = "";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">document.addEventListener("DOMContentLoaded", function () {
+    console.log("hello")
+    
+    
+    document.getElementById('toggle-description').addEventListener('click', function () {
+        toggleSection('description');
+    });
+    
+    document.getElementById('toggle-review').addEventListener('click', function () {
+        toggleSection('review');
+    });
+});
 &nbsp;
-  for (var count = 0; count &lt; restaurant_array.length; count++) {
-      var title = restaurant_array[count].restaurantName.toLowerCase();
-      if (title.includes(input)) {
-        var thumbnail = restaurant_array[count].image;
-        var title = restaurant_array[count].restaurantName;
-        var locations = restaurant_array[count].locations;
-        var rating = restaurant_array[count].rating;
-        var ratingNumber = parseFloat(rating).toFixed(1); // Convert and round the rating to one decimal place
-&nbsp;
-        // Updated image size
-        var cell = '&lt;div class="card" style="width: 18%; height: 100%; display: flex; flex-direction: column; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border-radius: 8px; margin: 10px; margin-left: 40px; margin-right: 20px; overflow: hidden;"&gt;' +
-        '&lt;img class="card-img-top" src="' + thumbnail + '" alt="Card image cap" style="width: 100%; height: 150px; object-fit: cover;"&gt;' +
-        '&lt;div class="rating-pill" style="align-self: flex-end; padding: 5px 10px; background-color: #FFD700; color: #000; border-radius: 5px; font-weight: bold;"&gt;' + ratingNumber + '&lt;/div&gt;' +
-        '&lt;div class="card-body" style="margin-bottom: 10px;"&gt;' +
-            '&lt;h5 style="cursor: pointer; color: #333; font-weight: bold; margin: 0;" class="card-title" onclick="viewOneRest(\'' + (JSON.stringify(restaurant_array[count]).replaceAll('\"', '&amp;quot;')).replaceAll('\'', '&amp;apos;')  + '\')"&gt;' + title + '&lt;/h5&gt;' +
-            '&lt;p class="card-text" style="color: #777;"&gt;' + locations + '&lt;/p&gt;' +
-        '&lt;/div&gt;' +
-    '&lt;/div&gt;';
-          table.insertAdjacentHTML('beforeend', cell);
-      }
-  }
-});</pre></td></tr></table></pre>
+function toggleSection(sectionId) {
+    var section = document.getElementById(sectionId + '-section');
+    console.log(sectionId + '-section')
+    console.log(section)
+    console.log(section.style.display)
+    document.querySelectorAll('.toggle-section').forEach(item =&gt; {
+        item.style.display = 'none'
+    })
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (section.style.display === 'none' || <span class="branch-1 cbranch-no" title="branch not covered" >section.style.display === '')</span> { 
+        section.style.display = 'block';
+    } else {
+<span class="cstat-no" title="statement not covered" >        section.style.display = 'none';</span>
+    }
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-31T06:11:02.026Z
+                at 2024-01-31T15:24:15.286Z
             </div>
         <script src="prettify.js"></script>
         <script>
