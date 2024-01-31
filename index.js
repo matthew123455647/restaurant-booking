@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
 });
 
 const server = app.listen(PORT, function () {
-  console.log(`Demo project at: ${PORT}!`); });
+  console.log(`Demo project at: ${PORT}!`)
+});
   
 module.exports = { app, server }
