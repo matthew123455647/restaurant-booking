@@ -7,7 +7,9 @@
     "include": [
       "utils/RestaurantUtil.js",
       "utils/CommentUtil.js",
-      "utils/AddCommentUtil.js"
+      "utils/AddCommentUtil.js",
+      "public/**/*.js",
+      "index.js"
     ],
     "exclude": [
       "public/**/navbar.js"
