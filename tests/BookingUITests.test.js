@@ -102,6 +102,55 @@ expect(isModalClosed).to.be.true;
 
   });
 
+  it("Manage to navigate to the correct window after confirming details ", async function (){
+
+    const baseUrl = "http://localhost:" + server.address().port + "/booking.html";
+    await driver.get(baseUrl);
+
+    // Locate and interact with the Login button
+    const addButton = await driver.findElement(
+      By.id(
+        "addBookingButton"
+      )
+    );
+    await addButton.click();
+    // Wait for the modal to load
+    console.log("aa")
+    const resourceModal = await driver.findElement(By.id("resourceModal"));
+    await driver.wait(until.elementIsVisible(resourceModal), 5000);
+
+    // Locate and interact with the name field
+    await driver.findElement(By.id("username")).sendKeys("test");
+
+    // Locate and interact with the location field
+    await driver.findElement(By.id("rest")).sendKeys("Putian");
+
+    // Locate and interact with the description field
+    await driver.findElement(By.id("contact")).sendKeys("88888888");
+
+    // Locate and interact with the description field
+    await driver.findElement(By.id("people")).sendKeys("2");
+
+    // Locate and interact with the description field
+    await driver.findElement(By.id("book_date")).sendKeys("11/11/2023");
+
+    await driver.findElement(
+      By.id(
+        "modalAddButton"
+      )).click();
+
+      // const messageElement = await driver.findElement(By.id("message"));
+      // const messageText = await messageElement.getText();
+      // console.log(messageText)
+      // expect(messageText).to.contains( "Added a new Booking at");
+      // console.log("after")
+
+    setTimeout(function(){
+      window.location.href = 'booking.html';
+  }, 2000);
+
+  });
+
 
   it("Should be able to open and close modal", async function () {
     const baseUrl = "http://localhost:" + server.address().port + "/booking.html";
@@ -221,6 +270,43 @@ expect(isModalClosed).to.be.true;
      await driver.wait(until.stalenessOf(deleteButton));
      
    });
+   it("Should handle unsuccessful deletion of a booking resource", async function () {
+    const baseUrl = "http://localhost:" + server.address().port + "/booking.html";
+    await driver.get(baseUrl);
+
+    // Simulate a scenario where the server responds with an error for deletion
+    const deleteButton = await driver.findElement(By.id("deletebtn"));
+    await deleteButton.click();
+
+    // Assuming you have a way to get the selectedId for the deletion
+    const selectedId = "123"; // Replace with a valid ID
+    const originalXMLHttpRequest = window.XMLHttpRequest;
+    window.XMLHttpRequest = function () {
+        this.open = function () {};
+        this.send = function () {
+            this.responseText = JSON.stringify({ message: "Unable to delete resource!" });
+            this.onload();
+        };
+        this.setRequestHeader = function () {};
+    };
+
+ try {
+        // Trigger the deleteBooking function with the mocked XMLHttpRequest
+        await deleteBooking(selectedId);
+
+        // Add an assertion for the error scenario
+        // Assuming you have some element to check for error message, update this accordingly
+        const errorMessageElement = await driver.findElement(By.xpath("//*[contains(text(), 'Unable to delete resource!')]"));
+        const errorMessageText = await errorMessageElement.getText();
+        assert.include(errorMessageText, "Unable to delete resource!");
+    } finally {
+        // Restore the original XMLHttpRequest implementation
+        window.XMLHttpRequest = originalXMLHttpRequest;
+    }
+
+
+});
+
  });
 
 
