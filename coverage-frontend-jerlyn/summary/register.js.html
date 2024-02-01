@@ -170,7 +170,27 @@
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -277,7 +297,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">function register() {
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function register() {
   var jsonData = new Object();
   jsonData.first_name = document.getElementById("first_name").value;
   jsonData.last_name = document.getElementById("last_name").value;
@@ -345,27 +385,47 @@
     return;
   }
 &nbsp;
-  <span class="cstat-no" title="statement not covered" ></span>
+  var request = <span class="cstat-no" title="statement not covered" >new XMLHttpRequest();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  request.open("POST", "/register", true);</span>
+<span class="cstat-no" title="statement not covered" >  request.setRequestHeader("Content-Type", "application/json");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  request.onload = <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+    var response = <span class="cstat-no" title="statement not covered" >JSON.parse(request.responseText);</span>
+<span class="cstat-no" title="statement not covered" >    console.log(response);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (response.message == undefined) {</span>
+      // Registration successful
+<span class="cstat-no" title="statement not covered" >      alert("Registration successful! You can now log in.");</span>
+      // Redirect to another page or perform additional actions
+<span class="cstat-no" title="statement not covered" >      window.location.href = "/";</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      document.getElementById("registerError").innerHTML =</span>
+        "Registration failed: " + response.message;
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  request.send(JSON.stringify(jsonData));</span>
 }
-<span class="cstat-no" title="statement not covered" ></span>
-fu<span class="cstat-no" title="statement not covered" >nction isValidEmail(email) {</span>
+&nbsp;
+function isValidEmail(email) {
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-<span class="cstat-no" title="statement not covered" >  return emailRegex<span class="fstat-no" title="function not covered" >.t</span>est(email);</span>
-}<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-function isValidPassword(password) {
-  //<span class="cstat-no" title="statement not covered" > Password must contain at least one capital letter and one special character</span>
-  var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&amp;*?])[a-zA-Z0-9!@#$%^&amp;*?]{6,}$/;
-  retu<span class="cstat-no" title="statement not covered" >rn passwordRegex.test(password);</span>
+  return emailRegex.test(email);
 }
-<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+function isValidPassword(password) {
+  // Password must contain at least one capital letter and one special character
+  var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&amp;*?])[a-zA-Z0-9!@#$%^&amp;*?]{6,}$/;
+  return passwordRegex.test(password);
+}
+&nbsp;
 function isValidBirthday(birthday) {
-  // A<span class="cstat-no" title="statement not covered" >dd your birthday validation logic</span>
+  // Add your birthday validation logic
   // For example, check if the user is between 18 and 116 years old
   const currentDate = new Date();
   const birthDate = new Date(birthday);
   const age = currentDate.getFullYear() - birthDate.getFullYear();
-<span class="cstat-no" title="statement not covered" >  return age &gt;= 18 &amp;&amp; age &lt;= 116;</span>
+  return age &gt;= 18 &amp;&amp; age &lt;= 116;
 }
 &nbsp;
 function isValidPhoneNumber(phoneNumber) {
@@ -391,7 +451,7 @@ function isValidUsername(username) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-31T08:23:33.470Z
+                at 2024-02-01T07:30:30.015Z
             </div>
         <script src="prettify.js"></script>
         <script>
