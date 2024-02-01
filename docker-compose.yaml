@@ -4,7 +4,7 @@ services:
     build: 
       context: .
       dockerfile: DockerfileZiyu
-    image: uyizzz/booking-docker-img:v1
+    image: uyizzz/booking-docker-img:v4
     container_name: booking-docker-container
   build-jerlyn: 
     build: 
