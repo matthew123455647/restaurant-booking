@@ -64,7 +64,7 @@ function addBooking() {
   request.onload = function () {
     response = JSON.parse(request.responseText);
     console.log(response);
-    if (response.message == undefined) {
+    response.message == undefined
       document.getElementById("message").innerHTML =
         "Added a new Booking at " + jsonData.rest + "!";
 
@@ -79,12 +79,7 @@ function addBooking() {
         window.location.href = 'booking.html';
     }, 2000);
      
-     
-    } else {
-      document.getElementById("message").innerHTML = "Unable to add resource!";
-      document.getElementById("message").setAttribute("class", "text-danger");
-      document.getElementById("message").setAttribute("class", "text-danger");
-    }
+    
   };
   request.send(JSON.stringify(jsonData));
 }

@@ -14,7 +14,8 @@
       "utils/LoginUtil.js",
       "utils/UserUtil.js",
       "public/**/*.js",
-      "index.js"
+      "index.js",
+      "public/**/*.js"
     ],
     "exclude": [],
     "reporter": [

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- ===== Boxicons CSS ===== -->
+    <!-- <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> -->
+    <title>Chicken Kitchen</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body onload="getRestaurantData(); fetchReviews()"> 
+    <div class="superNav border-bottom py-2 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 centerOnMobile">
+                    <select class="me-3 border-0 bg-light">
+                        <option value="en-us">EN-US</option>
+                    </select>
+                    <span class="d-none d-lg-inline-block d-md-inline-block d-sm-inline-block d-xs-none me-3"><strong>chickenkitchen@gmail.com</strong></span>
+                    <span class="me-3"><i class="fa-solid fa-phone me-1 text-warning"></i> <strong>+65 68853421</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="#"><i class="fa-solid fa-shop me-2"></i> <strong>Chicken Kitchen</strong></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                    <div class="ms-auto d-none d-lg-block">
+                        <div class="input-group">
+                            <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control border-warning" style="color:#7a7a7a" id="searchInput">
+                            <button class="btn btn-warning text-white" >Search</button>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav ms-auto ">
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase active" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase active" href="booking.html">Booking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase" aria-current="page" href="offer.html">Offers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase" href="login.html">Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Slideshow container -->
+        <div class="static-image">
+            <img src="images/restaurant3.jpg" style="width:100%">
+        </div>
+        <br>
+
+        <div class="alert"></div>
+
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <h1>Welcome to Chicken Kitchen!</h1>
+        <br>
+        <h2>These are the range of Restaurant </h2>
+        <br>
+
+        <!-- Your other content goes here -->
+       
+        <div id="restaurants-details" class="row"></div>
+    </div>
+
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <h3>Chicken<span>Kitchen</span></h3>
+            <p class="footer-links">
+                <a href="#" class="link-1">Home</a>
+                <a href="#">Blog</a>
+                <a href="#">Pricing</a>
+                <a href="#">About</a>
+                <a href="#">Faq</a>
+                <a href="#">Contact</a>
+            </p>
+            <p class="footer-company-name">Chicken Kitchen © 2015</p>
+        </div>
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>1 Grange Rd</span> Level 7, Singapore 239693</p>
+            </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+65 68853421</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:chickenkitchen@gmail.com">chickenkitchen@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div w3-include-html="restaurant.html"></div>
+    <div w3-include-html="review.html"></div>
+
+
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script>
+        //to bring in other HTML on the fly into this page
+        w3.includeHTML();
+    </script>
+    <script src="js/search.js"></script>
+    <script src="js/review.js"></script>
+    <script src="js/restaurant.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/togglebutton.js"></script>
+</body>
+
+</html>

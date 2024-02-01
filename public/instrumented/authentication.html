@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chicken Kitchen</title>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/authentication.js"></script>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 8px;
+      }
+
+      input {
+        padding: 8px;
+        margin-bottom: 16px;
+      }
+
+      input[type="submit"],
+      input[type="button"] {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover,
+      input[type="button"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container">
+      <h2>LOGIN</h2>
+      <form id="loginForm">
+        <input type="text" placeholder="Email" id="email" />
+        <input type="password" placeholder="Password" id="password" />
+        <a href="#">Forgot password?</a>
+        <p align="center" id="loginError" class="text-danger"></p>
+        <input type="button" onclick="login()" value="Login" id="loginButton" />
+        <input
+          type="button"
+          value="Go Register!!!"
+          onclick="backToRegister()"
+          id="lead-to-register"
+        />
+      </form>
+    </div>
+  </body>
+</html>
