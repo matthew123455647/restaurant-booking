@@ -4,10 +4,12 @@ const { describe, it } = require('mocha');
 const { expect } = require('chai');
 const chrome = require('selenium-webdriver/chrome');
 const chromeOptions = new chrome.Options();
+const fs = require('fs').promises;
 // chromeOptions.addArguments('--headless');
 const driver = new Builder().forBrowser('chrome').setChromeOptions(chromeOptions).build();
 
 driver.manage().window().maximize();
+var counter = 0;
 var server;
 before(async function () {
     server = await new Promise((resolve) => {
@@ -33,7 +35,7 @@ describe('Testing Chrome browser', function () {
 describe('Testing for Search Restaurant', function () {
     it('Should display matching restaurants when searching', async function () {
         this.timeout(100000);
-        const baseUrl = 'http://localhost:' + server.address().port ;
+        const baseUrl = 'http://localhost:' + server.address().port + '/instrumented' ;
 
         await driver.get(baseUrl);
 
@@ -66,7 +68,7 @@ describe('Testing for Search Restaurant', function () {
 
 
     it('Should clear results when search input is cleared', async function () {
-        const baseUrl = 'http://localhost:' + server.address().port ;
+        const baseUrl = 'http://localhost:' + server.address().port + '/instrumented' ;
         await driver.get(baseUrl);
 
         // Assuming the search input has the id "searchInput"
@@ -159,6 +161,22 @@ describe('Testing for show and add review', function () {
   });
   
   });
+
+  afterEach(async function () {
+    await driver.executeScript('return window.__coverage__;').then(async (coverageData) => {
+        if (coverageData) {
+            // Save coverage data to a file
+            await fs.writeFile('coverage-frontend-matthew/coverage' + counter++ + '.json',
+                JSON.stringify(coverageData), (err) => {
+                    if (err) {
+                        console.error('Error writing coverage data:', err);
+                    } else {
+                        console.log('Coverage data written to coverage.json');
+                    }
+                });
+        }
+    });
+});
 
 
 

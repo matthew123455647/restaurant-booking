@@ -14,10 +14,11 @@
       "utils/LoginUtil.js",
       "utils/UserUtil.js",
       "public/**/*.js",
-      "index.js",
-      "public/**/*.js"
+      "index.js"
     ],
-    "exclude": [],
+    "exclude": [
+      "public/**/navbar.js"
+    ],
     "reporter": [
       "text-summary",
       "html"
@@ -31,7 +32,9 @@
   },
   "scripts": {
     "test": "nyc mocha tests/*.test.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "frontend-instrument": "nyc instrument .\\public\\js .\\public\\instrumented\\js && copy .\\public\\*.html .\\public\\instrumented\\ && copy .\\public\\images .\\public\\instrumented\\ && copy .\\public\\css .\\public\\instrumented\\ && del .\\coverage-frontend-matthew\\*.json",
+    "frontend-report": "nyc report --reporter html --reporter text -t coverage-frontend-matthew --report-dir coverage-frontend-matthew/summary"
   },
   "author": "",
   "license": "ISC",

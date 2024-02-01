@@ -2,6 +2,7 @@ const { app } = require('../index');
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const { describe, it } = require('mocha');
 const { expect } = require('chai');
+const fs = require('fs').promises;
 
 const edge = require('selenium-webdriver/edge');
 
@@ -12,6 +13,7 @@ const driver = new Builder()
   .build();
 
 driver.manage().window().maximize();
+var counter = 0;
 var server;
 
 before(async function () {
@@ -37,7 +39,7 @@ describe('Testing Microsoft browser', function () {
 describe('Testing for Search Restaurant', function () {
   it('Should display matching restaurants when searching', async function () {
     this.timeout(100000);
-    const baseUrl = 'http://localhost:' + server.address().port;
+    const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
 
     await driver.get(baseUrl);
 
@@ -67,7 +69,7 @@ describe('Testing for Search Restaurant', function () {
 
 
   it('Should clear results when search input is cleared', async function () {
-    const baseUrl = 'http://localhost:' + server.address().port;
+    const baseUrl = 'http://localhost:' + server.address().port + '/instrumented';
     await driver.get(baseUrl);
 
     // Assuming the search input has the id "searchInput"
@@ -158,6 +160,22 @@ describe('Testing for show and add review', function () {
 
 });
 
+});
+
+afterEach(async function () {
+  await driver.executeScript('return window.__coverage__;').then(async (coverageData) => {
+      if (coverageData) {
+          // Save coverage data to a file
+          await fs.writeFile('coverage-frontend-matthew/coverage' + counter++ + '.json',
+              JSON.stringify(coverageData), (err) => {
+                  if (err) {
+                      console.error('Error writing coverage data:', err);
+                  } else {
+                      console.log('Coverage data written to coverage.json');
+                  }
+              });
+      }
+  });
 });
 
 
