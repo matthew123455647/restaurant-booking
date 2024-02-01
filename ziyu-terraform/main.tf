@@ -23,7 +23,7 @@ resource "azurerm_kubernetes_cluster" "bookingAKSCluster" {
  vm_size = "Standard_DS2_v2" 
  } 
  service_principal { 
- client_id = "79cd41bb-4e2a-4fb1-bdea-9ce1082012ea" 
- client_secret = "8az8Q~hc6FrKRa5uvc-fA.Ahm-.Qfs0EDbjePcAm" 
+ client_id = "4c2c833b-86c7-435f-b2ab-45fb191a5ba2" 
+ client_secret = "bxd8Q~dqtLonSc2nwcOQm1Deb0aUaaTJp5SW2bA~" 
  } 
 }
